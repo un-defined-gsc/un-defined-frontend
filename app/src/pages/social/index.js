@@ -1,15 +1,9 @@
-import PostCard from "@/components/cards/PostCard"
+import Social from "@/views/social";
 
-const Social = () => {
-    return (
-        <>
-            <PostCard />
-        </>
-    )
-}
+const SocialPage = () => <Social />;
 
-Social.acl = {
-    action: 'read',
-    subject: 'social'
-}
-export default Social
+SocialPage.acl = {
+  action: "read",
+  subject: "social",
+};
+export default SocialPage;

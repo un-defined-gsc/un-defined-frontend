@@ -22,8 +22,11 @@ const UseBgColor = () => {
       backgroundColor: theme.palette.secondary.main
     },
     secondaryLight: {
-      color: theme.palette.secondary.main,
-      backgroundColor: hexToRGBA(theme.palette.secondary.main, 0.12)
+      color: theme.palette.secondary.dark,
+      backgroundColor: hexToRGBA(theme.palette.secondary.light, 0.12),
+      '&:hover': {
+        backgroundColor: hexToRGBA(theme.palette.secondary.main, 0.36)
+      }
     },
     successFilled: {
       color: theme.palette.success.contrastText,

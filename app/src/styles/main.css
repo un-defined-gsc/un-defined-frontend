@@ -1,0 +1,10 @@
+body {
+    margin: 0;
+    background-color: #f6f8fc;
+    font-family: "Google Sans", Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: unset;
+}

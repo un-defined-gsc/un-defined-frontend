@@ -70,7 +70,7 @@ const palette = {
     },
     text: {
         primary: text.primary,
-        secondary: text.primary,
+        secondary: text.secondary,
         disabled: border.dark,
     },
 };

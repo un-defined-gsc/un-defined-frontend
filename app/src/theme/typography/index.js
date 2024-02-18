@@ -40,8 +40,8 @@ const typography = theme => {
             fontSize: "1.563rem",
         },
         caption: {
-            color: theme.palette.border.light,
-            fontSize: "0.8rem",
+            color: theme.palette.border.dark,
+            fontSize: "0.9rem",
         },
         link: {
             //

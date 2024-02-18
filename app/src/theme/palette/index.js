@@ -33,7 +33,7 @@ const palette = {
         main: "#8997AC",
         light: "#9AA8BC",
         dark: "#647185",
-        contrastText: text.primary,
+        contrastText: text.secondary,
     },
     success: {
         main: "#34a853",

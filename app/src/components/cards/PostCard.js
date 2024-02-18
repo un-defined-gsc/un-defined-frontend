@@ -1,7 +1,8 @@
 import CustomTooltip from "@/components/CustomTooltip"
 import CustomChip from "@/components/chip"
+import { showDatetime } from "@/utils/TimeOptions"
 import { hexToRGBA } from "@/utils/hex-to-rgba"
-import { AddReactionOutlined, ChatOutlined, InsertEmoticonOutlined, InsertInvitationOutlined, SpeakerNotesOffOutlined } from "@mui/icons-material"
+import { AddReactionOutlined, InsertEmoticonOutlined, InsertInvitationOutlined, OpenInNewOutlined } from "@mui/icons-material"
 import { Badge, Box, Card, CardActions, CardContent, CardMedia, Grid, IconButton, Typography } from "@mui/material"
 import { useState } from "react"
 
@@ -44,14 +45,20 @@ const PostCard = () => {
                         </CustomTooltip>
 
                         <CustomTooltip title={openComment ? "Close Comments" : "Open Comments"} placement="bottom" followCursor>
-                            <IconButton sx={{ color: 'text.primary' }} onClick={() => setOpenComment(!openComment)}>
-                                {
-                                    openComment
-                                        ? <ChatOutlined />
-                                        : <SpeakerNotesOffOutlined />
-                                }
+                            <CustomChip
+                                label={
+                                    <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                        <OpenInNewOutlined />
 
-                            </IconButton>
+                                        Go to Comments
+                                    </Typography>
+                                }
+                                rounded
+                                color="secondary"
+                                skin="light"
+                                onClick={() => setOpenComment(!openComment)}
+                            >
+                            </CustomChip>
                         </CustomTooltip>
                     </Box>
 
@@ -60,7 +67,7 @@ const PostCard = () => {
                     </Box> */}
 
                     <Typography variant="caption" sx={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        saasd
+                        {showDatetime(new Date())}
 
                         <InsertInvitationOutlined />
                     </Typography>
@@ -79,7 +86,7 @@ const PostCard = () => {
 
                             <Grid item xs={12}>
                                 <Box>
-                                    asdasd
+                                    Comment 1
                                 </Box>
                             </Grid>
                         </Grid>

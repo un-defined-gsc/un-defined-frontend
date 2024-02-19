@@ -1,3 +1,4 @@
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
   Box,
   Button,
@@ -6,28 +7,37 @@ import {
   FormControl,
   Grid,
   IconButton,
-  TextField,
+  TextField
 } from "@mui/material";
-import { useState } from "react";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useRouter } from "next/router";
+import { useState } from "react";
+import Select from "@mui/material/Select";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
 import { useAuth } from "@/hooks/useAuth";
 
 const { default: BlankLayout } = require("@/layout/BlankLayout");
 
-const Login = () => {
+const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [gender, setGender] = useState("");
+  const [appeal, setAppeal] = useState("");
   const router = useRouter();
-  const { login } = useAuth();
+  const { register } = useAuth();
 
   const handleSubmit = () => {
-    login({ email, password });
+    register({ email, password, name, surname, gender, appeal });
   };
 
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleChange = (event) => {
+    setGender(event.target.value);
+  };
 
   return (
     <Box
@@ -51,7 +61,7 @@ const Login = () => {
         <CardContent>
           <Box>
             <img
-              src="/logo.png"
+              src={"/logo.png"}
               alt="logo"
               style={{
                 maxHeight: "200px",
@@ -77,12 +87,78 @@ const Login = () => {
               <FormControl fullWidth>
                 <TextField
                   id="outlined-required"
+                  name="name"
+                  label="Name"
+                  onChange={(e) => setName(e.target.value)}
+                  style={{}}
+                />
+              </FormControl>
+            </Grid>
+
+            <Grid item xs={12}>
+              <FormControl fullWidth>
+                <TextField
+                  id="outlined-required"
+                  name="surname"
+                  label="Surname"
+                  onChange={(e) => setSurname(e.target.value)}
+                  style={{}}
+                />
+              </FormControl>
+            </Grid>
+
+            <Grid item xs={12}>
+              <FormControl fullWidth>
+                <TextField
+                  id="outlined-required"
                   name="email"
                   label="Email"
                   type="email"
                   onChange={(e) => setEmail(e.target.value)}
-                  style={{}}
                 />
+              </FormControl>
+            </Grid>
+
+            <Grid
+              item
+              xs={12}
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: "24px",
+              }}
+            >
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Gender</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={gender}
+                  label="Gender"
+                  onChange={handleChange}
+                >
+                  <MenuItem value={"male"}>Male</MenuItem>
+                  <MenuItem value={"female"}>Female</MenuItem>
+                  <MenuItem value={"other"}>Other</MenuItem>
+                  <MenuItem value={"rather-not-say"}>Rather Not Say</MenuItem>
+                </Select>
+              </FormControl>
+
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Appeal</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={appeal}
+                  label="Gender"
+                  onChange={handleChange}
+                >
+                  <MenuItem value={"she"}>She/Her</MenuItem>
+                  <MenuItem value={"he"}>He/His</MenuItem>
+                  <MenuItem value={"they"}>They/Their</MenuItem>
+                  <MenuItem value={"rather-not-say"}>Rather Not Say</MenuItem>
+                </Select>
               </FormControl>
             </Grid>
 
@@ -124,9 +200,9 @@ const Login = () => {
                     color: "secondary",
                   }}
                   color="secondary"
-                  onClick={() => router.push("/register")}
+                  onClick={() => router.push("/login")}
                 >
-                  Register
+                  Login
                 </Button>
                 <Button
                   fullWidth
@@ -134,7 +210,7 @@ const Login = () => {
                   color="primary"
                   onClick={handleSubmit}
                 >
-                  Login
+                  Register
                 </Button>
               </Box>
             </Grid>
@@ -145,7 +221,8 @@ const Login = () => {
   );
 };
 
-Login.guestGuard = true;
-Login.getLayout = (page) => <BlankLayout>{page}</BlankLayout>;
+Register.guestGuard = true;
+Register.getLayout = (page) => <BlankLayout>{page}</BlankLayout>;
+export default Register;
 
-export default Login;
+//isim + ,soy  isim + ,email + ,şifre + ,cinsiyet,sesleniş

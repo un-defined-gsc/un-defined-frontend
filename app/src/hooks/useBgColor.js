@@ -49,7 +49,7 @@ const UseBgColor = () => {
       backgroundColor: theme.palette.warning.main
     },
     warningLight: {
-      color: theme.palette.warning.main,
+      color: theme.palette.warning.dark,
       backgroundColor: hexToRGBA(theme.palette.warning.main, 0.12)
     },
     infoFilled: {

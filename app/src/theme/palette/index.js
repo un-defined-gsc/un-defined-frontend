@@ -1,6 +1,7 @@
 const text = {
     primary: "#202124",
-    secondary: "#f0f0f0",
+    secondary: "#0f0f0f",
+    light : "#f0f0f0"
 };
 
 const border = {
@@ -27,13 +28,13 @@ const palette = {
         main: "#3385FF",
         light: "#4796FF",
         dark: "#1360C0",
-        contrastText: text.secondary,
+        contrastText: text.light,
     },
     secondary: {
         main: "#8997AC",
         light: "#9AA8BC",
         dark: "#647185",
-        contrastText: text.secondary,
+        contrastText: text.light,
     },
     success: {
         main: "#34a853",
@@ -71,6 +72,7 @@ const palette = {
     text: {
         primary: text.primary,
         secondary: text.secondary,
+        light : text.light,
         disabled: border.dark,
     },
 };

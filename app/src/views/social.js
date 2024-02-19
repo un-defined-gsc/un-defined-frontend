@@ -1,4 +1,6 @@
 import PostCard from "@/components/cards/PostCard";
+import Aside from "@/layout/components/Aside";
+import { Box } from "@mui/material";
 
 const Social = () => {
   const settings = {
@@ -9,11 +11,12 @@ const Social = () => {
   const data = {
     image: "https://via.placeholder.com/800x300",
     categories: [
-      "Category 1",
-      "Category 2",
-      "Category 3",
-      "Category 4",
-      "Category 5",
+      "Category 1"
+    ],
+    tags: [
+      "Tag 1",
+      "Tag 2",
+      "Tag 3",
     ],
     title: "Title",
     description: "Description",
@@ -24,7 +27,18 @@ const Social = () => {
 
   return (
     <>
-      <PostCard settings={settings} data={data} />
+      <Box sx={{ display: "flex", gap: "32px" }}>
+        <Box
+          sx={{
+            maxWidth: "800px",
+            width: "100%",
+          }}
+        >
+          <PostCard settings={settings} data={data} />
+        </Box>
+
+        <Aside />
+      </Box>
     </>
   );
 };

@@ -10,6 +10,7 @@ import {
   Badge,
   Box,
   Card,
+  CardActions,
   CardContent,
   CardMedia,
   IconButton,
@@ -32,6 +33,7 @@ const PostCard = ({ settings = {}, data = {} }) => {
   const {
     image = "https://via.placeholder.com/800x300",
     categories = null,
+    tags = null,
     title,
     description,
     likes,
@@ -51,27 +53,25 @@ const PostCard = ({ settings = {}, data = {} }) => {
         sx={{ display: "flex", flexDirection: "column", gap: "8px" }}
       >
         <Box
-            sx={{
-                display: "flex",
-                gap: "15px",
-                flexWrap: "wrap",
-                justifyContent: "flex-start",
-            }}
+          sx={{
+            display: "flex",
+            gap: "15px",
+            flexWrap: "wrap",
+            justifyContent: "flex-start",
+          }}
         >
-        {categories?.length > 0 && Array.isArray(categories)
-          ? categories?.map((category, index) => (
-              <CustomChip
-              
-                key={index}
-                label={category}
-                color="primary"
-                rounded
-                sx={{ width: "fit-content" }}
-              />
-            ))
-          : null}
+          {categories?.length > 0 && Array.isArray(categories)
+            ? categories?.map((category, index) => (
+                <CustomChip
+                  key={index}
+                  label={category}
+                  color="secondary"
+                  rounded
+                  sx={{ width: "fit-content" }}
+                />
+              ))
+            : null}
         </Box>
-
 
         <Typography variant="h5" component="div">
           {title}
@@ -148,6 +148,31 @@ const PostCard = ({ settings = {}, data = {} }) => {
           </Typography>
         </Box>
       </CardContent>
+        <CardActions>
+        <Box
+          sx={{
+            display: "flex",
+            gap: "15px",
+            flexWrap: "wrap",
+            justifyContent: "flex-start",
+          }}
+        >
+          {tags?.length > 0 && Array.isArray(tags)
+            ? tags?.map((tag, index) => (
+                <CustomChip
+                  key={index}
+                  label={tag}
+                  color="warning"
+                  skin="light"
+                  size="small"
+                  rounded
+                  sx={{ width: "fit-content" }}
+                />
+              ))
+            : null}
+        </Box>
+        </CardActions>
+
     </Card>
   );
 };

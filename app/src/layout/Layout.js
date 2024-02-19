@@ -1,4 +1,3 @@
-
 import Navbar from "@/layout/components/Navbar";
 import Footer from "@/layout/components/Footer";
 import ScrollTop from "@/layout/components/ScrollTop";
@@ -48,7 +47,6 @@ const Layout = ({ children }) => {
                             minHeight: `calc(100vh - 80px)`,
                             maxWidth: '100%',
                             width: '100%',
-                            maxWidth: '800px',
                             py: '32px',
                             // ml: '200px'
                         }}
@@ -57,6 +55,8 @@ const Layout = ({ children }) => {
                     </Box>
                 </Box>
             </Container>
+
+            
 
             <Footer />
             {/* Other components */}

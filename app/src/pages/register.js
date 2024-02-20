@@ -21,23 +21,27 @@ const { default: BlankLayout } = require("@/layout/BlankLayout");
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [surname, setSurname] = useState("");
+  const [first_name, setName] = useState("");
+  const [last_name, setSurname] = useState("");
   const [gender, setGender] = useState("");
   const [appeal, setAppeal] = useState("");
   const router = useRouter();
   const { register } = useAuth();
 
   const handleSubmit = () => {
-    register({ email, password, name, surname, gender, appeal });
+    register({ email, password, first_name, last_name, gender, appeal });
   };
 
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  const handleChange = (event) => {
+  const handleChangeGender = (event) => {
     setGender(event.target.value);
   };
+
+  const handleChangeAppeal = (event) => {
+    setAppeal(event.target.value);
+  }
 
   return (
     <Box
@@ -136,7 +140,7 @@ const Register = () => {
                   id="demo-simple-select"
                   value={gender}
                   label="Gender"
-                  onChange={handleChange}
+                  onChange={handleChangeGender}
                 >
                   <MenuItem value={"male"}>Male</MenuItem>
                   <MenuItem value={"female"}>Female</MenuItem>
@@ -152,7 +156,7 @@ const Register = () => {
                   id="demo-simple-select"
                   value={appeal}
                   label="Gender"
-                  onChange={handleChange}
+                  onChange={handleChangeAppeal}
                 >
                   <MenuItem value={"she"}>She/Her</MenuItem>
                   <MenuItem value={"he"}>He/His</MenuItem>
@@ -225,4 +229,3 @@ Register.guestGuard = true;
 Register.getLayout = (page) => <BlankLayout>{page}</BlankLayout>;
 export default Register;
 
-//isim + ,soy  isim + ,email + ,şifre + ,cinsiyet,sesleniş

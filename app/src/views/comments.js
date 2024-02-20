@@ -33,10 +33,6 @@ const Comments = () => {
     image: "https://via.placeholder.com/800x300",
     categories: [
       "Category 1",
-      "Category 2",
-      "Category 3",
-      "Category 4",
-      "Category 5",
     ],
     title: "Title",
     description: "Description",

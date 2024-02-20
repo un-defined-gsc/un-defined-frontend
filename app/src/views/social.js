@@ -10,14 +10,8 @@ const Social = () => {
   };
   const data = {
     image: "https://via.placeholder.com/800x300",
-    categories: [
-      "Category 1"
-    ],
-    tags: [
-      "Tag 1",
-      "Tag 2",
-      "Tag 3",
-    ],
+    categories: ["Category 1"],
+    tags: ["Tag 1", "Tag 2", "Tag 3"],
     title: "Title",
     description: "Description",
     likes: 0,

@@ -8,6 +8,8 @@ const container = theme => {
           backgroundColor: `${theme.palette[ownerState.color].main} !important`,
           ...(ownerState.variant == "outlined" &&
             ownerState.color == "black" && { color: "#06122F" }),
+          ...(ownerState.variant == "standard" &&
+            { backgroundColor: "transparent" }),
         }),
       },
     }

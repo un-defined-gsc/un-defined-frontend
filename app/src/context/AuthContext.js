@@ -38,12 +38,12 @@ const AuthProvider = ({ children }) => {
     localStorage.removeItem("user");
     localStorage.removeItem("jwt-token");
 
-    const firstPath = router.pathname.split('/')[1]
-    if (firstPath != 'login') router.replace('/login')
+    const firstPath = router.pathname.split("/")[1];
+    if (firstPath != "login") router.replace("/login");
   };
 
   const login = async (data) => {
-    await fetch("http://localhost/api/auth", {
+    await fetch("/api/v1/public/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -54,8 +54,11 @@ const AuthProvider = ({ children }) => {
         if (res.status === 200) {
           res.json().then((body) => {
             try {
-                setUser(body.user);
-                router.replace("/");
+              setUser({
+                ...body.user,
+                role: "user",
+              });
+              router.replace("/");
             } catch (error) {
               console.log("Fetch error:", error);
             }
@@ -70,19 +73,18 @@ const AuthProvider = ({ children }) => {
       });
   };
 
-  const handleLogout = (user) => {
-    fetch("http://localhost/api/auth/logout", {
-      method: "POST",
+  const logout = (user) => {
+    fetch("/api/v1/private/user/logout", {
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
     }).then((res) => {
       if (res.status === 200) {
-    deleteStorage();
+        deleteStorage();
       }
     });
   };
-
 
   const initAuth = async () => {
     setIsInitialized(true);
@@ -98,9 +100,9 @@ const AuthProvider = ({ children }) => {
     setLoading(false);
   };
 
-  const handleRegister = async ( params ) => {
-    const { email, password,name,surname,gender,appeal } = params;
-    const response = await fetch("http://localhost/api/auth/register", {
+  const handleRegister = async (params) => {
+    const { email, password, first_name, last_name, gender, appeal } = params;
+    const response = await fetch("/api/v1/public/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -123,7 +125,7 @@ const AuthProvider = ({ children }) => {
     user,
     setUser,
     login,
-    logout: handleLogout,
+    logout,
     register: handleRegister,
   };
 

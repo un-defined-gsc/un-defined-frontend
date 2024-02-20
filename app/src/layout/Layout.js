@@ -48,7 +48,7 @@ const Layout = ({ children }) => {
                             maxWidth: '100%',
                             width: '100%',
                             py: '32px',
-                            // ml: '200px'
+                            ml: '332px'
                         }}
                     >
                         {children}

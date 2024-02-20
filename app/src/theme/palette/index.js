@@ -61,7 +61,7 @@ const palette = {
         contrastText: text.primary,
     },
     background: {
-        default: "#0F0F0F",
+        default: "#f6f8fc",
         paper: "#fff",
     },
     border: {

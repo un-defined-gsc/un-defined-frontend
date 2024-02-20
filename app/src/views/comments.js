@@ -30,7 +30,7 @@ const Comments = () => {
   };
 
   const data = {
-    image: "https://via.placeholder.com/800x300",
+    image: "https://www.ssb.gov.tr/Images/Uploads/MyContents/TY_20170630173853932630.jpg",
     categories: [
       "Category 1",
     ],

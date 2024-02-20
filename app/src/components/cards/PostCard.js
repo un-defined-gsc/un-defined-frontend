@@ -45,7 +45,7 @@ const PostCard = ({ settings = {}, data = {} }) => {
     <Card>
       <CardMedia
         component="img"
-        height="200"
+        height="300"
         image={image}
         alt="Picture of the card"
       />
@@ -57,7 +57,7 @@ const PostCard = ({ settings = {}, data = {} }) => {
             display: "flex",
             gap: "15px",
             flexWrap: "wrap",
-            justifyContent: "flex-start",
+            justifyContent: "space-between",
           }}
         >
           {categories?.length > 0 && Array.isArray(categories)
@@ -71,6 +71,14 @@ const PostCard = ({ settings = {}, data = {} }) => {
                 />
               ))
             : null}
+          <Typography
+            variant="caption"
+            sx={{ display: "flex", alignItems: "center", gap: "8px" }}
+          >
+            {showDatetime(date)}
+
+            <InsertInvitationOutlined />
+          </Typography>
         </Box>
 
         <Typography variant="h5" component="div">
@@ -137,18 +145,9 @@ const PostCard = ({ settings = {}, data = {} }) => {
           {/* <Box sx={{ width: '100%' }}>
                         <Divider />
                     </Box> */}
-
-          <Typography
-            variant="caption"
-            sx={{ display: "flex", alignItems: "center", gap: "8px" }}
-          >
-            {showDatetime(date)}
-
-            <InsertInvitationOutlined />
-          </Typography>
         </Box>
       </CardContent>
-        <CardActions>
+      <CardActions>
         <Box
           sx={{
             display: "flex",
@@ -171,8 +170,7 @@ const PostCard = ({ settings = {}, data = {} }) => {
               ))
             : null}
         </Box>
-        </CardActions>
-
+      </CardActions>
     </Card>
   );
 };

@@ -1,9 +1,9 @@
 import Profile from '@/views/profile'
 
-const ProfilePage = () => <Profile />
+const ProfilePage = () => <Profile priv />
 
 ProfilePage.acl = {
   action: "read",
-  subject: "social",
+  subject: "profile-private",
 };
 export default ProfilePage;

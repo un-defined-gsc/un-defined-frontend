@@ -49,28 +49,27 @@ const PostCard = ({ settings = {}, data = {} }) => {
         image={image}
         alt="Picture of the card"
       />
-      <CardContent
-        sx={{ display: "flex", flexDirection: "column", gap: "8px" }}
-      >
+      <CardContent sx={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
         <Box
           sx={{
             display: "flex",
-            gap: "15px",
+            gap: "1rem",
             flexWrap: "wrap",
             justifyContent: "space-between",
           }}
         >
           {categories?.length > 0 && Array.isArray(categories)
             ? categories?.map((category, index) => (
-                <CustomChip
-                  key={index}
-                  label={category}
-                  color="secondary"
-                  rounded
-                  sx={{ width: "fit-content" }}
-                />
-              ))
+              <CustomChip
+                key={index}
+                label={category}
+                color="secondary"
+                rounded
+                sx={{ width: "fit-content" }}
+              />
+            ))
             : null}
+
           <Typography
             variant="caption"
             sx={{ display: "flex", alignItems: "center", gap: "8px" }}
@@ -81,10 +80,23 @@ const PostCard = ({ settings = {}, data = {} }) => {
           </Typography>
         </Box>
 
-        <Typography variant="h5" component="div">
+        <Typography variant="h5" component="div" sx={{ mt: "0.5rem" }}>
           {title}
         </Typography>
-        <Typography variant="body1" component="div">
+
+        <Typography
+          variant="subtitle"
+          component="div"
+          sx={{
+            textAlign: "justify",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            display: "-webkit-box",
+            WebkitLineClamp: 5,
+            WebkitBoxOrient: "vertical",
+            whiteSpace: "pre-line",
+          }}
+        >
           {description}
         </Typography>
         <Box
@@ -125,6 +137,7 @@ const PostCard = ({ settings = {}, data = {} }) => {
 
             {showComments ? ( // Show comments
               <CustomChip
+                variant="outlined"
                 label={
                   <Typography
                     variant="body1"
@@ -136,7 +149,7 @@ const PostCard = ({ settings = {}, data = {} }) => {
                 }
                 rounded
                 color="secondary"
-                skin="light"
+                // skin="light"
                 onClick={() => router.replace("/social/comments/1")}
               />
             ) : null}
@@ -147,27 +160,30 @@ const PostCard = ({ settings = {}, data = {} }) => {
                     </Box> */}
         </Box>
       </CardContent>
-      <CardActions>
+      <CardActions sx={{
+        px: "0.5rem",
+        pt: 0
+      }}>
         <Box
           sx={{
             display: "flex",
-            gap: "15px",
+            gap: "0.5rem",
             flexWrap: "wrap",
             justifyContent: "flex-start",
           }}
         >
           {tags?.length > 0 && Array.isArray(tags)
             ? tags?.map((tag, index) => (
-                <CustomChip
-                  key={index}
-                  label={tag}
-                  color="warning"
-                  skin="light"
-                  size="small"
-                  rounded
-                  sx={{ width: "fit-content" }}
-                />
-              ))
+              <CustomChip
+                key={index}
+                label={tag}
+                color="warning"
+                skin="light"
+                size="small"
+                rounded
+                sx={{ width: "fit-content" }}
+              />
+            ))
             : null}
         </Box>
       </CardActions>

@@ -2,6 +2,7 @@ body {
     margin: 0;
     background-color: #f6f8fc;
     font-family: "Google Sans", Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+    line-height: "1.5rem";
 }
 
 a {

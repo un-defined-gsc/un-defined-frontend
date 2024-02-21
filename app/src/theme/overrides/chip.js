@@ -8,11 +8,11 @@ const chip = theme => {
     MuiChip: {
       styleOverrides: {
         width: 'auto',
-        root: {
+        root: ({ ownerState }) => ({
           '&.MuiChip-rounded': {
             borderRadius: '5px'
-          }
-        },
+          },
+        }),
         outlined: {
           '&.MuiChip-colorDefault': {
             borderColor: `rgba(${theme.palette.mainColor}, 0.22)`

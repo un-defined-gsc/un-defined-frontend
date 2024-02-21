@@ -28,7 +28,7 @@ const CustomChip = props => {
   return (
     <MuiChip
       {...propsToPass}
-      variant='filled'
+      variant={props.variant || 'filled'}
       className={clsx({
         'MuiChip-rounded': rounded,
         'MuiChip-light': skin === 'light'

@@ -1,28 +1,24 @@
+// import Groups2Icon from '@mui/icons-material/Groups2';
+import Diversity2Icon from '@mui/icons-material/Diversity2';
+import InterestsIcon from '@mui/icons-material/Interests';
+import { Person } from "@mui/icons-material";
+
 const navigation = [
     {
-        path: "/about-us",
-        title: "about_us",
+        path: "/social",
+        title: "Social",
+        icon: <Diversity2Icon />,
     },
     {
-        path: "/erasmus-plus",
-        title: "erasmus+",
+        path: "/interests",
+        title: "Interests",
+        icon: <InterestsIcon />,
     },
     {
-        path: "#products",
-        title: "products",
+        path: "/profile",
+        title: "Profile",
+        icon: <Person />,
     },
-    {
-        path: "#services",
-        title: "services",
-    },
-    {
-        path: "/trainings",
-        title: "trainings",
-    },
-    {
-        path: "#contact",
-        title: "contact",
-    }
 ]
 
 export default navigation;

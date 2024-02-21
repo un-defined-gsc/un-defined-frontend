@@ -7,6 +7,7 @@ import MuiTextField from './textfield'
 import MuiFormHelperText from './formhelpertext'
 import MuiGrid from './grid'
 import MuiDivider from './divider'
+import MuiTypography from './typography'
 
 const Overrides = (theme) => {
   const chip = MuiChip(theme)
@@ -17,6 +18,7 @@ const Overrides = (theme) => {
   const formhelpertext = MuiFormHelperText(theme)
   const grid = MuiGrid(theme)
   const divider = MuiDivider(theme)
+  const typography = MuiTypography(theme)
 
   return Object.assign(
     chip,
@@ -26,7 +28,8 @@ const Overrides = (theme) => {
     textfield,
     formhelpertext,
     grid,
-    divider
+    divider,
+    typography
   )
 }
 

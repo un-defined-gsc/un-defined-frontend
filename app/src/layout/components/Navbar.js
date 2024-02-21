@@ -1,14 +1,17 @@
 import { useAuth } from "@/hooks/useAuth";
 import { Facebook, Twitter } from "@mui/icons-material";
-import { Avatar, Box, Button, IconButton, Typography } from "@mui/material";
+import { Avatar, Box, Button, Divider, IconButton, List, ListItemButton, ListItemIcon, ListItemText, Typography } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
-import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import { useRouter } from "next/router";
+import navigation from "@/navigation";
+import { hexToRGBA } from "@/utils/hex-to-rgba";
 const Navbar = () => {
   const { logout } = useAuth();
 
   const handleSubmit = () => logout();
   const router = useRouter();
+
+  const handleLocate = (p) => { if (p) return () => router.replace(p) }
 
   return (
     <Box
@@ -45,15 +48,42 @@ const Navbar = () => {
         </Typography>
       </Box>
 
-      <Box>
-        <IconButton>
-          <Twitter />
-        </IconButton>
+      <List
+        sx={{
+          display: 'flex',
+          gap: '0.5rem',
+          flexDirection: 'column',
+          pt: 0
+        }}
+        component="nav"
+      >
+        {
+          navigation.map((item, index) => (
+            <ListItemButton
+              key={index}
+              variant="standard"
+              onClick={handleLocate(item.path)}
+              sx={{
+                '&:hover': {
+                  transform: "translateX(5px)",
+                  transition: "all 300ms ease-in-out",
+                },
+                '&:not(:hover)': {
+                  transform: "translateX(0)",
+                  transition: "all 300ms ease-in-out",
+                },
+                backgroundColor: theme => router.pathname == item.path && hexToRGBA(theme.palette["secondary"].main, 0.12)
+              }}
+            >
+              <ListItemIcon>
+                {item.icon}
+              </ListItemIcon>
 
-        <IconButton>
-          <Facebook />
-        </IconButton>
-      </Box>
+              <ListItemText primary={item.title} />
+            </ListItemButton>
+          ))
+        }
+      </List>
 
       <Box
         sx={{
@@ -62,27 +92,25 @@ const Navbar = () => {
           flexDirection: "column",
           gap: "16px",
           position: "absolute",
-          bottom: "0",
-          left: "0",
-          right: "0",
-          padding: "16px",
-          borderTop: "1px solid #E0E0E0",
+          bottom: 0,
+          left: 0,
+          py: "16px",
         }}
       >
-        <Button
-          variant="standard"
-          color="primary"
-          onClick={() => router.replace("/profile")}
-          sx={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "flex-start",
-            gap: "8px",
-          }}
-        >
-          <PermIdentityIcon />
-          Profile
-        </Button>
+
+        <Box sx={{ px: '0.5rem' }}>
+          <IconButton sx={{ '&:hover': { color: theme => theme.palette.primary.main } }}>
+            <Twitter />
+          </IconButton>
+
+          <IconButton sx={{ '&:hover': { color: theme => theme.palette.primary.main } }}>
+            <Facebook />
+          </IconButton>
+        </Box>
+
+        <Box>
+          <Divider />
+        </Box>
 
         <Button
           variant="standard"
@@ -93,6 +121,10 @@ const Navbar = () => {
             display: "flex",
             justifyContent: "flex-start",
             gap: "8px",
+
+            '&:hover': {
+              color: theme => theme.palette.error.main
+            }
           }}
         >
           <LogoutIcon />

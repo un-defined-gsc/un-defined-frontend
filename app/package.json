@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "set PORT=3003 && next dev",
-    "build": "next build",
+    "dev": "export PORT=3003 && next dev",
+    "build": "export build",
     "start": "set PORT=3003 && next start",
     "lint": "next lint"
   },

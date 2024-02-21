@@ -20,6 +20,10 @@ const typography = theme => {
         h6: {
             fontSize: "1.25rem",
         },
+        subtitle: {
+            fontSize: "1rem",
+            color: theme.palette.secondary.dark,
+        },
         body1: {
             fontSize: "1rem",
         },
@@ -40,7 +44,7 @@ const typography = theme => {
             fontSize: "1.563rem",
         },
         caption: {
-            color: theme.palette.border.dark,
+            color: theme.palette.secondary.dark,
             fontSize: "0.9rem",
         },
         link: {

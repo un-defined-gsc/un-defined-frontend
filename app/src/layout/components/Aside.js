@@ -1,13 +1,10 @@
 import CustomChip from "@/components/chip";
-import { Autocomplete, Box, TextField, Typography } from "@mui/material";
-import LocalOfferOutlinedIcon from "@mui/icons-material/LocalOfferOutlined";
+import { Autocomplete, Box, Button, TextField, Typography } from "@mui/material";
+// import LocalOfferOutlinedIcon from "@mui/icons-material/LocalOfferOutlined";
 import WidgetsOutlinedIcon from "@mui/icons-material/WidgetsOutlined";
-import { theme } from "@/configs/theme";
+import TagIcon from '@mui/icons-material/Tag';
 
 const Aside = () => {
-
-    console.log(theme)
-
   const searchData = [
     {
       title: "Title 1",
@@ -19,9 +16,22 @@ const Aside = () => {
       title: "Title 3",
     },
     {
-        title : "Deneme 1"
+      title: "Deneme 1"
     }
   ];
+
+  const categories = [
+    {
+      title: "Technology",
+      selected: true,
+    },
+    {
+      title: "Science",
+    },
+    {
+      title: "Health",
+    },
+  ]
 
   const options = searchData.map((option) => {
     const firstLetter = option.title[0].toUpperCase();
@@ -43,20 +53,21 @@ const Aside = () => {
         flexDirection: "column",
       }}
     >
-      <Box>
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
         <Typography variant="h5" color="secondary">
           Search
         </Typography>
-      {/* groupBy'ı verilere göre listeleriz.
+        {/* groupBy'ı verilere göre listeleriz.
         getOptionLabel ise inputa yazılan değerlere göre listeleriz.
       */}
         <Autocomplete
-              id="grouped-demo"
-              options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
-              getOptionLabel={(option) => option.title}
-              groupBy={(option) => option.firstLetter}
-              renderInput={(params) => (
-            <TextField {...params} variant="outlined"  />
+          id="grouped-demo"
+          options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
+          getOptionLabel={(option) => option.title}
+          groupBy={(option) => option.firstLetter}
+          size="small"
+          renderInput={(params) => (
+            <TextField {...params} variant="outlined" />
           )}
         />
       </Box>
@@ -66,15 +77,15 @@ const Aside = () => {
           sx={{
             display: "flex",
             flexDirection: "column",
-            gap: "8px",
-            marginTop: "16px",
+            gap: "1rem",
+            marginTop: "1rem",
           }}
         >
           <Typography
             sx={{
               display: "flex",
               alignItems: "center",
-              gap: "8px",
+              gap: "1rem",
             }}
             variant="h5"
             color="secondary"
@@ -82,31 +93,25 @@ const Aside = () => {
             <WidgetsOutlinedIcon />
             Categories
           </Typography>
+
           <Box
             sx={{
               display: "flex",
-              gap: "15px",
+              gap: "0.5rem",
               flexWrap: "wrap",
             }}
           >
-            <CustomChip
-              label="Technology"
-              color="secondary"
-              rounded
-              sx={{ width: "fit-content" }}
-            />
-            <CustomChip
-              label="Science"
-              color="secondary"
-              rounded
-              sx={{ width: "fit-content" }}
-            />
-            <CustomChip
-              label="Health"
-              color="secondary"
-              rounded
-              sx={{ width: "fit-content" }}
-            />
+            {
+              categories.map((category, index) => (
+                <Button
+                  key={index}
+                  color="secondary"
+                  variant={category.selected ? "contained" : "outlined"}
+                >
+                  {category.title}
+                </Button>
+              ))
+            }
           </Box>
         </Box>
       </Box>
@@ -116,26 +121,27 @@ const Aside = () => {
           sx={{
             display: "flex",
             flexDirection: "column",
-            gap: "8px",
-            marginTop: "16px",
+            gap: "1rem",
+            marginTop: "1rem",
           }}
         >
           <Typography
             sx={{
               display: "flex",
               alignItems: "center",
-              gap: "8px",
+              gap: "1rem",
             }}
             variant="h5"
             color="secondary"
           >
-            <LocalOfferOutlinedIcon />
+            <TagIcon />
             Tags
           </Typography>
+
           <Box
             sx={{
               display: "flex",
-              gap: "15px",
+              gap: "0.5rem",
               flexWrap: "wrap",
             }}
           >

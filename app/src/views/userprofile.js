@@ -28,7 +28,7 @@ const Userprofile = () => {
 
   const data = {
     image: "https://via.placeholder.com/800x300",
-    categories: ["Category 1"],
+    categories: ["Technology"],
     title: "Title",
     description: "Description",
     likes: 0,

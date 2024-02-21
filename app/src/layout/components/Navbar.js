@@ -1,10 +1,11 @@
 import { useAuth } from "@/hooks/useAuth";
 import { Facebook, Twitter } from "@mui/icons-material";
-import { Avatar, Box, Button, Divider, IconButton, List, ListItemButton, ListItemIcon, ListItemText, Typography } from "@mui/material";
+import { Box, Button, Divider, IconButton, List, ListItemButton, ListItemIcon, ListItemText, Typography } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useRouter } from "next/router";
 import navigation from "@/navigation";
 import { hexToRGBA } from "@/utils/hex-to-rgba";
+import ProfileAvatar from "@/components/images/ProfileAvatar";
 const Navbar = () => {
   const { logout } = useAuth();
 
@@ -30,15 +31,7 @@ const Navbar = () => {
       <Box
         sx={{ width: "100%", display: "flex", justifyContent: "flex-start" }}
       >
-        <Avatar
-          src="https://www.w3schools.com/howto/img_avatar.png"
-          alt="Picture of the author"
-          style={{
-            width: "100px",
-            height: "100px",
-            borderRadius: "50%",
-          }}
-        />
+        <ProfileAvatar src="https://www.w3schools.com/howto/img_avatar.png" />
       </Box>
 
       <Box>

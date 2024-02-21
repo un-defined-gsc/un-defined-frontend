@@ -3,21 +3,21 @@ import CustomTooltip from "@/components/tooltip";
 import { Badge } from "@mui/base";
 import {
   AddReactionOutlined,
-  InsertEmoticonOutlined,
+  InsertEmoticonOutlined
 } from "@mui/icons-material";
 import {
-  Avatar,
   Box,
   Card,
   CardContent,
   Divider,
   IconButton,
   TextField,
-  Typography,
+  Typography
 } from "@mui/material";
 import { useState } from "react";
 import SendIcon from "@mui/icons-material/Send";
 import InputAdornment from "@mui/material/InputAdornment";
+import ProfileAvatar from "@/components/images/ProfileAvatar";
 
 const Comments = () => {
   const [isLiked, setIsLiked] = useState(false);
@@ -111,16 +111,15 @@ const Comments = () => {
               marginTop: "30px",
             }}
           >
-            <Avatar
-              sx={{
+            <ProfileAvatar
+              style={{
                 width: "50px",
                 height: "50px",
-                marginRight: "10px",
-                borderRadius: "15px",
+                marginRight: "0.5rem",
               }}
-              alt="Remy Sharp"
               src="https://via.placeholder.com/150"
             />
+
             <Box
               sx={{
                 display: "flex",

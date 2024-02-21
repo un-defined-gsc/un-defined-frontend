@@ -1,7 +1,7 @@
 const text = {
     primary: "#202124",
     secondary: "#0f0f0f",
-    light : "#f0f0f0"
+    light: "#f0f0f0"
 };
 
 const border = {
@@ -40,25 +40,25 @@ const palette = {
         main: "#34a853",
         light: "#54B86F",
         dark: "#25803D",
-        contrastText: text.primary,
+        contrastText: text.light,
     },
     warning: {
         main: "#FFAA00",
         light: "#FFBE2A",
         dark: "#C08800",
-        contrastText: text.primary,
+        contrastText: text.light,
     },
     info: {
         main: "#4285f4",
         light: "#5F99F8",
         dark: "#2E63BA",
-        contrastText: text.primary,
+        contrastText: text.light,
     },
     error: {
         main: "#ea4336",
         light: "#F06055",
         dark: "#c5221f",
-        contrastText: text.primary,
+        contrastText: text.light,
     },
     background: {
         default: "#f6f8fc",
@@ -72,7 +72,7 @@ const palette = {
     text: {
         primary: text.primary,
         secondary: text.secondary,
-        light : text.light,
+        light: text.light,
         disabled: border.dark,
     },
 };

@@ -4,7 +4,7 @@ import {
   AddReactionOutlined,
   InsertEmoticonOutlined,
   InsertInvitationOutlined,
-  OpenInNewOutlined,
+  OpenInNewOutlined
 } from "@mui/icons-material";
 import {
   Badge,
@@ -14,27 +14,15 @@ import {
   CardContent,
   CardMedia,
   IconButton,
-  Typography,
+  Typography
 } from "@mui/material";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { showDatetime } from "@/utils/timeOptions";
-import Editpost from "@/pages/post/edit/[post]";
 
-const PostCard = ({ settings = {}, data = {} }) => {
+const PostCard = ({ settings, data }) => {
   const [isLiked, setIsLiked] = useState(false);
   const router = useRouter();
-  const [openEditDialog, setOpenEditDialog] = useState(false);
-
-    const handleOpenEditDialog = () => {
-      setOpenEditDialog(true);
-      <Editpost data = {data2}  />
-      
-    };
-  
-    const handleCloseEditDialog = () => {
-      setOpenEditDialog(false);
-    };
 
   const {
     showComments = false,
@@ -52,14 +40,6 @@ const PostCard = ({ settings = {}, data = {} }) => {
     isLiked: j,
     date,
   } = data;
-
-  const data2 = {
-    image: image,
-    categories: categories,
-    tags: tags,
-    // content : content,
-    // title: title,
-  };
 
   return (
     <Card>
@@ -188,7 +168,6 @@ const PostCard = ({ settings = {}, data = {} }) => {
                 }
                 rounded
                 color="primary"
-                onClick={handleOpenEditDialog} 
               />
             ) : null}
 

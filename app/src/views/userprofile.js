@@ -23,7 +23,7 @@ const Userprofile = () => {
   const settings = {
     showComments: true,
     showLikes: false,
-    showReactions: false,
+    editPost: true,
   };
 
   const data = {
@@ -146,7 +146,7 @@ const Userprofile = () => {
                   variant="body2"
                   color="secondary"
                 >
-                  <RecordVoiceOverOutlinedIcon /> <b>Appeal:</b> AĞLAMA MEHMET
+                  <RecordVoiceOverOutlinedIcon /> <b>Appeal:</b> He/Him
                 </Typography>
               </Grid>
             </Grid>

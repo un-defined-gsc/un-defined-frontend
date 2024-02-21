@@ -19,15 +19,27 @@ import {
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { showDatetime } from "@/utils/timeOptions";
+import Editpost from "@/pages/post/edit/[post]";
 
 const PostCard = ({ settings = {}, data = {} }) => {
   const [isLiked, setIsLiked] = useState(false);
   const router = useRouter();
+  const [openEditDialog, setOpenEditDialog] = useState(false);
+
+    const handleOpenEditDialog = () => {
+      setOpenEditDialog(true);
+      <Editpost data = {data2}  />
+      
+    };
+  
+    const handleCloseEditDialog = () => {
+      setOpenEditDialog(false);
+    };
 
   const {
     showComments = false,
     showLikes = false,
-    showReactions = false,
+    editPost = false,
   } = settings;
 
   const {
@@ -40,6 +52,14 @@ const PostCard = ({ settings = {}, data = {} }) => {
     isLiked: j,
     date,
   } = data;
+
+  const data2 = {
+    image: image,
+    categories: categories,
+    tags: tags,
+    // content : content,
+    // title: title,
+  };
 
   return (
     <Card>
@@ -153,6 +173,26 @@ const PostCard = ({ settings = {}, data = {} }) => {
                 onClick={() => router.replace("/social/comments/1")}
               />
             ) : null}
+
+            {editPost ? ( // Edit post
+              <CustomChip
+                variant="outlined"
+                label={
+                  <Typography
+                    variant="body1"
+                    sx={{ display: "flex", alignItems: "center", gap: "8px" }}
+                  >
+                    <OpenInNewOutlined />
+                    Edit Post
+                  </Typography>
+                }
+                rounded
+                color="primary"
+                onClick={handleOpenEditDialog} 
+              />
+            ) : null}
+
+
           </Box>
 
           {/* <Box sx={{ width: '100%' }}>

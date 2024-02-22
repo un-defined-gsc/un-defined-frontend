@@ -1,6 +1,6 @@
 import PostCard from "@/components/cards/PostCard";
 import Aside from "@/layout/components/Aside";
-import { Box } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 
 const Social = () => {
   const settings = {
@@ -21,15 +21,19 @@ const Social = () => {
 
   return (
     <>
-      <Box sx={{ display: "flex", gap: "32px" }}>
-        <Box
+      <Box sx={{ display: "flex", gap: "2rem" }}>
+        <Grid
+          container
           sx={{
             maxWidth: "800px",
             width: "100%",
           }}
+          spacing={2}
         >
-          <PostCard settings={settings} data={data} />
-        </Box>
+          <Grid item xs={12}>
+            <PostCard settings={settings} data={data} />
+          </Grid>
+        </Grid>
 
         <Aside />
       </Box>

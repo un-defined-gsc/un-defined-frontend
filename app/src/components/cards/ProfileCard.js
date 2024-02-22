@@ -28,6 +28,7 @@ const ProfileCard = (props) => {
         email,
         gender,
         appeal,
+        priv
     } = props;
 
     return (
@@ -55,15 +56,19 @@ const ProfileCard = (props) => {
                             >
                                 <ProfileAvatar src={avatar || null} />
 
-                                <Button
-                                    variant="contained"
-                                    size="small"
-                                    color="warning"
-                                    sx={{ maxWidth: 'fit-content', display: 'flex', alignItems: 'center', gap: '0.5rem' }}
-                                    onClick={() => setOpen(true)}
-                                >
-                                    <ModeEditOutline fontSize="small" /> Edit Profile
-                                </Button>
+                                {
+                                    priv
+                                        ? <Button
+                                            variant="contained"
+                                            size="small"
+                                            color="warning"
+                                            sx={{ maxWidth: 'fit-content', display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+                                            onClick={() => setOpen(true)}
+                                        >
+                                            <ModeEditOutline fontSize="small" /> Edit Profile
+                                        </Button>
+                                        : null
+                                }
                             </Box>
 
                         </Grid>
@@ -129,28 +134,32 @@ const ProfileCard = (props) => {
                 </CardContent>
             </Card>
 
-            <ClassicDialog
-                open={open}
-                setOpen={setOpen}
-                title={<Box>
-                    Change <b>{name} {surname}</b>'s Profile Informations
-                </Box>}
-                subtitle=""
-                actions={
-                    <Button
-                        variant="contained"
-                        color="success"
-                        onClick={() => router.push("/login")}
+            {
+                priv
+                    ? <ClassicDialog
+                        open={priv && open}
+                        setOpen={setOpen}
+                        title={<Box>
+                            Change <b>{name} {surname}</b>'s Profile Informations
+                        </Box>}
+                        subtitle=""
+                        actions={
+                            <Button
+                                variant="contained"
+                                color="success"
+                                onClick={() => router.push("/login")}
+                            >
+                                Save
+                            </Button>
+                        }
                     >
-                        Save
-                    </Button>
-                }
-            >
-                <ProfileForm
-                    values={values}
-                    setValues={setValues}
-                />
-            </ClassicDialog>
+                        <ProfileForm
+                            values={values}
+                            setValues={setValues}
+                        />
+                    </ClassicDialog>
+                    : null
+            }
         </Fragment>
     )
 }

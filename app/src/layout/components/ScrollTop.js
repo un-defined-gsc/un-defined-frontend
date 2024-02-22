@@ -30,20 +30,21 @@ const ScrollTop = () => {
         ref={arrow}
         onClick={scrollToTop}
         aria-label="arrows"
-        color="secondary"
+        color="primary"
         sx={{
           opacity: 0,
           position: 'fixed',
           transitionDuration: '500ms',
           transitionProperty: 'all',
           transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
-          boxShadow: '0 0 5px rgba(0, 0, 0, 0.5)',
+          // boxShadow: theme => `0 0 5px ${hexToRGBA(theme.palette.background.paper, 1)}`,
+          border: '1px solid',
           borderRadius: '5px',
           bottom: '1rem',
           right: '2rem',
           p: '0',
           zIndex: 99,
-          color: '#eee',
+          color: theme => theme.palette.primary.main,
           height: '40px',
           minWidth: '40px',
           width: '40px !important',

@@ -4,10 +4,14 @@ const card = theme => {
   return {
     MuiCard: {
       styleOverrides: {
-        root: {
+        root: ({ ownerState }) => ({
           borderRadius: "5px",
           backgroundColor: hexToRGBA(theme.palette.background.paper, 0.2),
           boxShadow: `0px 1px 5px ${theme.palette.secondary.main}`,
+          ...(ownerState?.variant == "bordered" && {
+            border: `1px solid ${theme.palette.secondary.main}`,
+            boxShadow: "none",
+          }),
           // boxShadow: 'none',
           // border: `1px solid ${theme.palette.secondary.main}`,
           // boxShadow: "none",
@@ -21,9 +25,17 @@ const card = theme => {
           //         paddingBottom: "2rem",
           //     },
           // },
+        }),
+      },
+    },
+    MuiCardContent: {
+      styleOverrides: {
+        root: {
+          padding: "1rem",
+          paddingBottom: "1rem !important",
         },
       },
-    }
+    },
   }
 }
 

@@ -27,7 +27,7 @@ import TagChip from "../chip/tag";
 const PostCard = ({ settings, data }, props) => {
   const [isLiked, setIsLiked] = useState(false);
   const [open, setOpen] = useState(false);
-  const { imageProp, tagsProp, categoryProp, contentProp, titleProp } = props;
+  const { image:imageProp, tags:tagsProp, categories:categoryProp, content:contentProp, title:titleProp } = props;
   const [values, setValues] = useState(props);
 
   const router = useRouter();

@@ -61,7 +61,6 @@ const Register = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          borderRadius: "20px",
         }}
       >
         <CardContent>
@@ -76,7 +75,7 @@ const Register = () => {
                 display: "block",
                 marginLeft: "auto",
                 marginRight: "auto",
-                borderRadius: "20px",
+                borderRadius: "5px",
               }}
             />
           </Box>

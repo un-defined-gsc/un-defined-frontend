@@ -45,7 +45,6 @@ const Login = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          borderRadius: "20px",
         }}
       >
         <CardContent>
@@ -60,7 +59,7 @@ const Login = () => {
                 display: "block",
                 marginLeft: "auto",
                 marginRight: "auto",
-                borderRadius: "20px",
+                borderRadius: "5px",
               }}
             />
           </Box>

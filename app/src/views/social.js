@@ -1,6 +1,7 @@
 import PostCard from "@/components/cards/PostCard";
 import Aside from "@/layout/components/Aside";
-import { Box, Grid } from "@mui/material";
+import { hexToRGBA } from "@/utils/hex-to-rgba";
+import { Avatar, Box, Button, Card, Divider, Grid } from "@mui/material";
 
 const Social = () => {
   const settings = {
@@ -21,7 +22,7 @@ const Social = () => {
 
   return (
     <>
-      <Box sx={{ display: "flex", gap: "2rem" }}>
+      <Box sx={{ display: "flex", gap: "2rem",}}>
         <Grid
           container
           sx={{
@@ -29,7 +30,59 @@ const Social = () => {
             width: "100%",
           }}
           spacing={2}
+        > 
+
+        
+        <Card
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+            height: "4%",
+            padding: "1rem",
+            marginLeft: "1rem",
+            
+          }}
         >
+          <Avatar
+            alt="Remy Sharp"
+            src="https://www.ssb.gov.tr/Images/Uploads/MyContents/TY_20170630173853932630.jpg"
+            sx={{ width: 50, height: 50 }}
+          />
+          <Button
+            sx={{
+              width: "100%",
+              height: "80%",
+              marginLeft: "1rem",
+              textAlign: "left",
+              justifyContent: "left",
+              textTransform: "none",
+              backgroundColor: "inherit !important",
+              color : (theme) => theme.palette.border.main,
+              border: "1px solid",
+              padding: "1rem",
+              "&:hover": {
+                backgroundColor: theme => `${hexToRGBA(theme.palette.border.light, 0.2)} !important`,
+              },
+
+            }}
+          >
+            Write a Post
+          </Button>
+
+        </Card>
+
+          <Divider sx={{
+            width: "100%",
+            margin: "1rem 0",
+            marginLeft: "1rem",
+          }} />
+
+          <Grid item xs={12}> 
+            <PostCard settings={settings} data={data} />
+          </Grid>
+
           <Grid item xs={12}>
             <PostCard settings={settings} data={data} />
           </Grid>

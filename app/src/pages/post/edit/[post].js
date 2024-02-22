@@ -152,7 +152,7 @@ const Editpost = (data = {}) => {
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={category}
-                  label="Gender"
+                  label="Category"
                   onChange={handleCategory}
                 >
                   <MenuItem value={"category1"}>category1</MenuItem>

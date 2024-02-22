@@ -82,7 +82,6 @@ const index = () => {
                 sx={{
                   width: "30%",
                   padding: "8px",
-                  borderRadius: "4px",
                   marginLeft: "auto",
                 }}
               >
@@ -142,7 +141,6 @@ const index = () => {
                 sx={{
                   width: "30%",
                   padding: "8px",
-                  borderRadius: "4px",
                   marginLeft: "auto",
                 }}
               >
@@ -202,7 +200,6 @@ const index = () => {
                 sx={{
                   width: "30%",
                   padding: "8px",
-                  borderRadius: "4px",
                   marginLeft: "auto",
                 }}
               >
@@ -262,7 +259,6 @@ const index = () => {
                 sx={{
                   width: "30%",
                   padding: "8px",
-                  borderRadius: "4px",
                   marginLeft: "auto",
                 }}
               >

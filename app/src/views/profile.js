@@ -1,12 +1,10 @@
 import { Box, Grid } from "@mui/material";
 import { useEffect, useState } from "react";
-
 // MUI Imports
 import Tab from '@mui/material/Tab'
 import TabPanel from '@mui/lab/TabPanel'
 import TabContext from '@mui/lab/TabContext'
 import Typography from '@mui/material/Typography'
-
 // Component Imports
 import ProfileCard from "@/components/cards/ProfileCard";
 import { TabList } from "@mui/lab";

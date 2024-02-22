@@ -39,7 +39,6 @@ const ScrollTop = () => {
           transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
           // boxShadow: theme => `0 0 5px ${hexToRGBA(theme.palette.background.paper, 1)}`,
           border: '1px solid',
-          borderRadius: '5px',
           bottom: '1rem',
           right: '2rem',
           p: '0',

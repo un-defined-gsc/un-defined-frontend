@@ -17,7 +17,7 @@ const CustomTooltip = styled(({ className, ...props }) => (
         fontSize: theme.typography.pxToRem(12),
         padding: "0.5rem 0.75rem",
         fontFamily: "inherit",
-        borderRadius: "10px",
+        borderRadius: "5px",
     },
 }));
 

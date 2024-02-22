@@ -22,8 +22,9 @@ import { Fragment, useState } from "react";
 import { showDatetime } from "@/utils/timeOptions";
 import PostForm from "../forms/PostForm";
 import ClassicDialog from "../dialogs/ClassicDialog";
+import TagChip from "../chip/tag";
 
-const PostCard = ({ settings, data },props) => {
+const PostCard = ({ settings, data }, props) => {
   const [isLiked, setIsLiked] = useState(false);
   const [open, setOpen] = useState(false);
   const { imageProp, tagsProp, categoryProp, contentProp, titleProp } = props;
@@ -70,14 +71,14 @@ const PostCard = ({ settings, data },props) => {
           >
             {categories?.length > 0 && Array.isArray(categories)
               ? categories?.map((category, index) => (
-                  <CustomChip
-                    key={index}
-                    label={category}
-                    color="secondary"
-                    rounded
-                    sx={{ width: "fit-content" }}
-                  />
-                ))
+                <CustomChip
+                  key={index}
+                  label={category}
+                  color="secondary"
+                  rounded
+                  sx={{ width: "fit-content" }}
+                />
+              ))
               : null}
 
             <Typography
@@ -154,7 +155,7 @@ const PostCard = ({ settings, data },props) => {
                       sx={{ display: "flex", alignItems: "center", gap: "8px" }}
                     >
                       <OpenInNewOutlined />
-                      Go to Comments
+                      Go to details
                     </Typography>
                   }
                   rounded
@@ -165,16 +166,16 @@ const PostCard = ({ settings, data },props) => {
               ) : null}
 
               {editPost ? ( // Edit post
-             
-                    <Button
-                    variant="outlined"
-                      onClick={() => setOpen(true)}
-                      sx={{ display: "flex", alignItems: "center", gap: "8px" }}
-                    >
-                      <OpenInNewOutlined />
-                      Edit Post
-                    </Button>
-    
+
+                <Button
+                  variant="outlined"
+                  onClick={() => setOpen(true)}
+                  sx={{ display: "flex", alignItems: "center", gap: "8px" }}
+                >
+                  <OpenInNewOutlined />
+                  Edit Post
+                </Button>
+
               ) : null}
             </Box>
 
@@ -199,16 +200,11 @@ const PostCard = ({ settings, data },props) => {
           >
             {tags?.length > 0 && Array.isArray(tags)
               ? tags?.map((tag, index) => (
-                  <CustomChip
-                    key={index}
-                    label={tag}
-                    color="warning"
-                    skin="light"
-                    size="small"
-                    rounded
-                    sx={{ width: "fit-content" }}
-                  />
-                ))
+                <TagChip
+                  key={index}
+                  label={tag}
+                />
+              ))
               : null}
           </Box>
         </CardActions>

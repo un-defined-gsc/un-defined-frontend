@@ -35,12 +35,12 @@ export const fetchProfileById = createAsyncThunk('profile/fetchProfileById', asy
                 appeal: "she/her"
             },
             {
-                avatar: "https://www.w3schools.com/howto/img_avatar.png",
+                avatar: "https://imgb.ifunny.co/images/88a18ba94d62c93838d3f56ededeba62e43e2e24e8c0f28947a444951ab04a93_1.webp",
                 name: "Resul",
                 surname: "Çelik",
                 email: "burakbicakci14@gmail.com",
-                gender: "female",
-                appeal: "he/his"
+                gender: "Atak helikopter",
+                appeal: "fly/flyer/flyself"
             }
         ]
 

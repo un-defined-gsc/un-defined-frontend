@@ -8,13 +8,14 @@ const ScrollTop = () => {
   const arrow = useRef();
 
   useEffect(() => {
-    window.onscroll = () => {
+    window.addEventListener('scroll',() => {
       if (window.pageYOffset >= 200) {
-        if (arrow.current) arrow.current.style.opacity = 1;
+        if (arrow.current) arrow.current.style.bottom = "1rem";
       } else {
-        if (arrow.current) arrow.current.style.opacity = 0;
+        if (arrow.current) arrow.current.style.bottom = "-100%";
+        // if (arrow.current) arrow.current.style.opacity = 0;
       }
-    };
+    });
   }, []);
 
   const scrollToTop = () => {
@@ -32,14 +33,14 @@ const ScrollTop = () => {
         aria-label="arrows"
         color="primary"
         sx={{
-          opacity: 0,
+          // opacity: 0,
           position: 'fixed',
           transitionDuration: '500ms',
           transitionProperty: 'all',
           transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
           // boxShadow: theme => `0 0 5px ${hexToRGBA(theme.palette.background.paper, 1)}`,
           border: '1px solid',
-          bottom: '1rem',
+          // bottom: '1rem',
           right: '2rem',
           p: '0',
           zIndex: 99,

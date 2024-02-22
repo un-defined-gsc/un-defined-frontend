@@ -10,7 +10,7 @@ import {
 import { Fragment } from "react";
 
 const PostForm = ({ values = null, setValues = () => {} }) => {
-  //     const [values, setValues] = useState({
+  // const [values, setValues] = useState({
   //       image: "",
   //       tags: "",
   //       category: "",

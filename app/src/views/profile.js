@@ -14,6 +14,7 @@ import PostCard from "@/components/cards/PostCard";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProfile, fetchProfileById, getProfile } from "@/store/api/profile";
+import Aside from "@/layout/components/Aside";
 
 const Profile = ({ priv = true }) => {
 
@@ -24,7 +25,7 @@ const Profile = ({ priv = true }) => {
   const settings = {
     showComments: true,
     showLikes: false,
-    editPost: true,
+    editPost: priv ? true : false,
   };
 
   const data = {
@@ -60,52 +61,56 @@ const Profile = ({ priv = true }) => {
   }, [router.isReady])
 
   return (
-    <Box sx={{
-      width: '100%',
-      maxWidth: "800px",
-      display: "flex",
-      flexDirection: "column",
-      gap: '1rem'
-    }}>
-      <ProfileCard {...values} />
+    <Box sx={{ display: "flex", gap: "2rem" }}>
+      <Box sx={{
+        width: '100%',
+        maxWidth: "800px",
+        display: "flex",
+        flexDirection: "column",
+        gap: '1rem'
+      }}>
+        <ProfileCard {...values} priv={priv} />
 
-      <TabContext value={tab}>
-        <TabList centered pill='true' onChange={handleChange} aria-label='customized tabs example'>
-          <Tab value='posts' label='Posts' />
-          <Tab value='liked' label='Liked Posts' />
-          <Tab value='comments' label='Comments' />
-        </TabList>
+        <TabContext value={tab}>
+          <TabList centered pill='true' onChange={handleChange} aria-label='customized tabs example'>
+            <Tab value='posts' label='Posts' />
+            <Tab value='liked' label='Liked Posts' />
+            <Tab value='comments' label='Comments' />
+          </TabList>
 
-        <TabPanel value='posts'>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <PostCard settings={settings} data={data} />
+          <TabPanel value='posts'>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <PostCard settings={settings} data={data} />
+              </Grid>
+
+              <Grid item xs={12}>
+                <PostCard settings={settings} data={data} />
+              </Grid>
+
+              <Grid item xs={12}>
+                <PostCard settings={settings} data={data} />
+              </Grid>
             </Grid>
+          </TabPanel>
 
-            <Grid item xs={12}>
-              <PostCard settings={settings} data={data} />
-            </Grid>
+          <TabPanel value='liked'>
+            <Typography>
+              Chocolate bar carrot cake candy canes sesame snaps. Cupcake pie gummi bears jujubes candy canes. Chupa chups
+              sesame snaps halvah.
+            </Typography>
+          </TabPanel>
 
-            <Grid item xs={12}>
-              <PostCard settings={settings} data={data} />
-            </Grid>
-          </Grid>
-        </TabPanel>
+          <TabPanel value='comments'>
+            <Typography>
+              Danish tiramisu jujubes cupcake chocolate bar cake cheesecake chupa chups. Macaroon ice cream tootsie roll
+              carrot cake gummi bears.
+            </Typography>
+          </TabPanel>
+        </TabContext>
+      </Box>
 
-        <TabPanel value='liked'>
-          <Typography>
-            Chocolate bar carrot cake candy canes sesame snaps. Cupcake pie gummi bears jujubes candy canes. Chupa chups
-            sesame snaps halvah.
-          </Typography>
-        </TabPanel>
-
-        <TabPanel value='comments'>
-          <Typography>
-            Danish tiramisu jujubes cupcake chocolate bar cake cheesecake chupa chups. Macaroon ice cream tootsie roll
-            carrot cake gummi bears.
-          </Typography>
-        </TabPanel>
-      </TabContext>
+      <Aside />
     </Box>
   );
 };

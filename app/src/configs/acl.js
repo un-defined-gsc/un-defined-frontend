@@ -22,6 +22,7 @@ const defineRulesFor = (role, subject, permissions) => {
       can(['read'], "social-comments")
       can(['read'], "profile-public")
       can(['read'], "profile-private")
+      can(['read'], "interests")
       break
 
     default:

@@ -107,13 +107,13 @@ const Navbar = () => {
 
         <Button
           variant="standard"
-          color="error"
           onClick={() => handleSubmit()}
           sx={{
             width: "100%",
             display: "flex",
             justifyContent: "flex-start",
             gap: "8px",
+            color: theme => theme.palette.text.primary,
 
             '&:hover': {
               color: theme => theme.palette.error.main

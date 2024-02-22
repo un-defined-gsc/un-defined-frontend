@@ -1,8 +1,8 @@
-import CustomChip from "@/components/chip";
 import { Autocomplete, Box, Button, TextField, Typography } from "@mui/material";
 // import LocalOfferOutlinedIcon from "@mui/icons-material/LocalOfferOutlined";
 import WidgetsOutlinedIcon from "@mui/icons-material/WidgetsOutlined";
 import TagIcon from '@mui/icons-material/Tag';
+import TagChip from "@/components/chip/tag";
 
 const Aside = () => {
   const searchData = [
@@ -153,27 +153,9 @@ const Aside = () => {
                 flexWrap: "wrap",
               }}
             >
-              <CustomChip
-                label="Technology"
-                color="warning"
-                skin="light"
-                rounded
-                sx={{ width: "fit-content" }}
-              />
-              <CustomChip
-                label="Science"
-                color="warning"
-                skin="light"
-                rounded
-                sx={{ width: "fit-content" }}
-              />
-              <CustomChip
-                label="Health"
-                color="warning"
-                skin="light"
-                rounded
-                sx={{ width: "fit-content" }}
-              />
+              <TagChip label="Technology" />
+              <TagChip label="Science" />
+              <TagChip label="Health" />
             </Box>
           </Box>
         </Box>

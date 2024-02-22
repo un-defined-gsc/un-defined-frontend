@@ -8,8 +8,9 @@ import {
   TextField,
 } from "@mui/material";
 import { Fragment } from "react";
+import TagField from "./components/TagField";
 
-const PostForm = ({ values = null, setValues = () => {} }) => {
+const PostForm = ({ values = null, setValues = () => { } }) => {
   //     const [values, setValues] = useState({
   //       image: "",
   //       tags: "",
@@ -114,17 +115,9 @@ const PostForm = ({ values = null, setValues = () => {} }) => {
                   </Select>
                 </FormControl>
               </Grid>
+
               <Grid item xs={12}>
-                <FormControl fullWidth>
-                  <TextField
-                    id="outlined-required"
-                    name="tags"
-                    label="Tags"
-                    type="text"
-                    value={values?.tags || ""}
-                    onChange={handleTag}
-                  />
-                </FormControl>
+                <TagField setTags={(tag) => setValues({ ...values, tags: tag })} tags={values?.tags} />
               </Grid>
             </Grid>
           </Box>

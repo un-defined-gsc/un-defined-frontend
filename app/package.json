@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "set PORT=3003 && next dev",
+    "devmac": "export PORT=3003 && next dev",
     "build": "next build",
     "start": "export PORT=3003 && next start",
     "lint": "next lint"

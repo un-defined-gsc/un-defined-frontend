@@ -3,6 +3,7 @@ import { configureStore } from '@reduxjs/toolkit'
 // ** Reducers
 import profile from './api/profile'
 import post from './api/post'
+import verify from './api/verify'
 
 // Custom middleware
 const customizedMiddleware = (getDefaultMiddleware) =>
@@ -14,6 +15,8 @@ export const store = configureStore({
   reducer: {
     profile,
     post,
+    verify,
+
   },
   middleware: customizedMiddleware,
 })

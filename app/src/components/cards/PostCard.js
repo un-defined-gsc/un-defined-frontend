@@ -23,6 +23,7 @@ import { showDatetime } from "@/utils/timeOptions";
 import PostForm from "../forms/PostForm";
 import ClassicDialog from "../dialogs/ClassicDialog";
 import TagChip from "../chip/tag";
+import CategoryChip from "../chip/category";
 
 const PostCard = ({ settings, data }, props) => {
   const [isLiked, setIsLiked] = useState(false);
@@ -71,12 +72,11 @@ const PostCard = ({ settings, data }, props) => {
           >
             {categories?.length > 0 && Array.isArray(categories)
               ? categories?.map((category, index) => (
-                <CustomChip
-                  key={index}
-                  label={category}
-                  color="secondary"
-                  rounded
-                  sx={{ width: "fit-content" }}
+                <CategoryChip
+                key={index}
+                label={categories}
+                isActive={true}
+                info
                 />
               ))
               : null}

@@ -1,10 +1,13 @@
-import { Autocomplete, Box, Button, TextField, Typography } from "@mui/material";
+import { Autocomplete, Box, TextField, Typography } from "@mui/material";
 // import LocalOfferOutlinedIcon from "@mui/icons-material/LocalOfferOutlined";
 import WidgetsOutlinedIcon from "@mui/icons-material/WidgetsOutlined";
-import TagIcon from '@mui/icons-material/Tag';
+import TagIcon from "@mui/icons-material/Tag";
 import TagChip from "@/components/chip/tag";
+import CategoryChip from "@/components/chip/category";
 
 const Aside = () => {
+
+
   const searchData = [
     {
       title: "Title 1",
@@ -16,8 +19,8 @@ const Aside = () => {
       title: "Title 3",
     },
     {
-      title: "Deneme 1"
-    }
+      title: "Deneme 1",
+    },
   ];
 
   const categories = [
@@ -31,7 +34,7 @@ const Aside = () => {
     {
       title: "Health",
     },
-  ]
+  ];
 
   const options = searchData.map((option) => {
     const firstLetter = option.title[0].toUpperCase();
@@ -61,7 +64,7 @@ const Aside = () => {
           top: "2rem",
         }}
       >
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
           <Typography variant="h5" color="secondary">
             Search
           </Typography>
@@ -70,7 +73,9 @@ const Aside = () => {
       */}
           <Autocomplete
             id="grouped-demo"
-            options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
+            options={options.sort(
+              (a, b) => -b.firstLetter.localeCompare(a.firstLetter)
+            )}
             getOptionLabel={(option) => option.title}
             groupBy={(option) => option.firstLetter}
             size="small"
@@ -109,17 +114,13 @@ const Aside = () => {
                 flexWrap: "wrap",
               }}
             >
-              {
-                categories.map((category, index) => (
-                  <Button
-                    key={index}
-                    color="secondary"
-                    variant={category.selected ? "contained" : "outlined"}
-                  >
-                    {category.title}
-                  </Button>
-                ))
-              }
+              {categories.map((category, index) => (
+                <CategoryChip
+                  key={index}
+                  label={category.title}
+                  isActive={category.selected}
+                  />
+              ))}
             </Box>
           </Box>
         </Box>

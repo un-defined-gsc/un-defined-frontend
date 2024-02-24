@@ -26,6 +26,8 @@ const PostForm = ({ values = null, setValues = () => { } }) => {
     setValues({ ...values, tags: e.target.value });
   };
 
+  console.log("values", values)
+
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
@@ -35,7 +37,6 @@ const PostForm = ({ values = null, setValues = () => { } }) => {
             name="title"
             label="Title"
             value={values?.title || ""}
-            type="text"
             onChange={(e) =>
               setValues({ ...values, title: e.target.value })
             }
@@ -46,15 +47,14 @@ const PostForm = ({ values = null, setValues = () => { } }) => {
         <FormControl fullWidth>
           <TextField
             id="outlined-required"
-            name="content"
-            label="Content"
+            name="description"
+            label="Description"
             multiline
             minRows={2}
             maxRows={8}
-            type="text"
-            value={values?.content || ""}
+            value={values?.description || ""}
             onChange={(e) =>
-              setValues({ ...values, content: e.target.value })
+              setValues({ ...values, description: e.target.value })
             }
           />
         </FormControl>
@@ -65,7 +65,6 @@ const PostForm = ({ values = null, setValues = () => { } }) => {
             id="outlined-required"
             name="image"
             label="Image"
-            type="file"
             value={values?.image || ""}
             onChange={handleImage}
           />
@@ -91,9 +90,9 @@ const PostForm = ({ values = null, setValues = () => { } }) => {
             <MenuItem value={"category4"}>category4</MenuItem>
           </Select>
         </FormControl>
-      </Grid>
+      </Grid> 
 
-      <Grid item xs={12}>
+       <Grid item xs={12}>
         <TagField setTags={(tag) => setValues({ ...values, tags: tag })} tags={values?.tags} />
       </Grid>
     </Grid>

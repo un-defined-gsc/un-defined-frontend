@@ -1,6 +1,4 @@
 import PostCard from "@/components/cards/PostCard";
-import ClassicDialog from "@/components/dialogs/ClassicDialog";
-import PostForm from "@/components/forms/PostForm";
 import Aside from "@/layout/components/Aside";
 import { hexToRGBA } from "@/utils/hex-to-rgba";
 import {
@@ -11,11 +9,13 @@ import {
   Divider,
   Drawer,
   Grid,
-  useMediaQuery,
+  useMediaQuery
 } from "@mui/material";
 import { Fragment, useEffect, useRef, useState } from "react";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import CloseIcon from "@mui/icons-material/Close";
+import ClassicDialog from "@/components/dialogs/ClassicDialog";
+import PostForm from "@/components/forms/PostForm";
 
 const Social = (props) => {
   const arrow = useRef();
@@ -34,16 +34,9 @@ const Social = (props) => {
   }, []);
 
   const [open, setOpen] = useState(false);
-  const {
-    image: imageProp,
-    tags: tagsProp,
-    categories: categoryProp,
-    content: contentProp,
-    title: titleProp,
-  } = props;
-  const [values, setValues] = useState(props);
-
   const [isOpen, setIsOpen] = useState(false);
+
+  
   const settings = {
     showComments: true,
     showLikes: true,
@@ -64,6 +57,8 @@ const Social = (props) => {
 
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down("mdlg"));
   const Handletoggle = () => setIsOpen(!isOpen);
+
+  const [values, setValues] = useState(props);
 
   return (
     <Fragment>
@@ -198,6 +193,8 @@ const Social = (props) => {
         >
           <PostForm values={values} setValues={setValues} />
         </ClassicDialog>
+        
+
       </Box>
     </Fragment>
   );

@@ -1,5 +1,3 @@
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { styled, useTheme } from "@mui/material/styles";
 import MuiTimeline from "@mui/lab/Timeline";
@@ -10,7 +8,12 @@ import TimelineSeparator from "@mui/lab/TimelineSeparator";
 import TimelineConnector from "@mui/lab/TimelineConnector";
 import TimelineOppositeContent from "@mui/lab/TimelineOppositeContent";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { Button } from "@mui/material";
+import { Box, Button, Divider} from "@mui/material";
+import { useState } from "react";
+import ClassicDialog from "@/components/dialogs/ClassicDialog";
+import IntestForm from "@/components/forms/IntrestForm";
+import OpenInNewOutlinedIcon from "@mui/icons-material/OpenInNewOutlined";
+import TimelineCard from "@/components/cards/TimelineCard";
 
 const Timeline = styled(MuiTimeline)(({ theme }) => ({
   paddingLeft: 0,
@@ -28,247 +31,136 @@ const Timeline = styled(MuiTimeline)(({ theme }) => ({
   },
 }));
 
+const data = [
+  {
+    name: "Node.js",
+    icon: <OpenInNewOutlinedIcon />,
+  },
+  {
+    name: "Go Programming Language asdsad ada sdasd ad a",
+    icon: <OpenInNewOutlinedIcon />,
+  },
+  {
+    name: "Redis",
+    icon: <OpenInNewOutlinedIcon />,
+  },
+  {
+    name: "Postgres",
+    icon: <OpenInNewOutlinedIcon />,
+  },
+];
+
+const item = {
+  title: "Başlık",
+  description:
+  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+};
+
 const index = () => {
   const theme = useTheme();
+  const [values, setValues] = useState({
+    title: "",
+    subtitle: "",
+  });
+
+  const [open, setOpen] = useState(false);
+
   const isBelowMdScreen = useMediaQuery(theme.breakpoints.down("md"));
   return (
-    <Timeline position={isBelowMdScreen ? "right" : "alternate"}>
-      <TimelineItem>
-        {!isBelowMdScreen && (
-          <TimelineOppositeContent color="text.disabled"></TimelineOppositeContent>
-        )}
-        <TimelineSeparator>
-          <TimelineDot color="success"></TimelineDot>
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>
-          <Card>
-            <CardContent
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "10px",
-                padding: "16px",
-              }}
+    <Box>
+      <Divider textAlign="middle">
+        <Typography variant="h4">Interest Title</Typography>
+      </Divider>
+
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "flex-end",
+          width: "100%",
+          gap: "1rem",
+          mt: "1rem",
+        }}
+      >
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={() => setOpen(true)}
+        >
+          Add Timeline
+        </Button>
+        <ClassicDialog
+          open={open}
+          setOpen={setOpen}
+          actions={
+            <Button
+              variant="contained"
+              color="success"
+              onClick={() => setOpen(false)}
             >
-              <Typography variant="h5" color="secondary">
-                Başlık
-              </Typography>
-              <Typography
-                variant="subtitle"
-                component="div"
-                sx={{
-                  textAlign: "justify",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  display: "-webkit-box",
-                  WebkitLineClamp: 5,
-                  WebkitBoxOrient: "vertical",
-                  whiteSpace: "pre-line",
-                }}
-              >
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-              </Typography>
+              Save
+            </Button>
+          }
+        >
+          <IntestForm values={values} setValues={setValues} />
+        </ClassicDialog>
+      </Box>
 
-              {/* image için */}
-              {/* <Box className='flex items-center gap-2.5 w-fit rounded bg-actionHover plb-[5px] pli-2.5'>
-                    <img height={20} alt='documentation.pdf' src='images/icons/pdf-document.png' />
-                    <Typography className='font-medium'>documentation.pdf</Typography>
-                  </Box> */}
+      <Timeline position={isBelowMdScreen ? "right" : "alternate"}>
+        <TimelineItem>
+          {!isBelowMdScreen && (
+            <TimelineOppositeContent color="text.disabled"></TimelineOppositeContent>
+          )}
+          <TimelineSeparator>
+            <TimelineDot color="success"></TimelineDot>
+            <TimelineConnector />
+          </TimelineSeparator>
+          <TimelineContent>
+            <Box>
+              <TimelineCard title={item.title} description={item.description} />
+            </Box>
+          </TimelineContent>
+        </TimelineItem>
+        <TimelineItem>
+          {!isBelowMdScreen && (
+            <TimelineOppositeContent color="text.disabled"></TimelineOppositeContent>
+          )}
+          <TimelineSeparator>
+            <TimelineDot color="error"></TimelineDot>
+            <TimelineConnector />
+          </TimelineSeparator>
+          <TimelineContent>
+            <TimelineCard title={item.title} description={item.description} />
+          </TimelineContent>
+        </TimelineItem>
 
-              <Button
-                variant="contained"
-                color="primary"
-                sx={{
-                  width: "30%",
-                  padding: "8px",
-                  marginLeft: "auto",
-                }}
-              >
-                Detay
-              </Button>
-            </CardContent>
-          </Card>
-        </TimelineContent>
-      </TimelineItem>
+        <TimelineItem>
+          {!isBelowMdScreen && (
+            <TimelineOppositeContent color="text.disabled"></TimelineOppositeContent>
+          )}
+          <TimelineSeparator>
+            <TimelineDot color="info"></TimelineDot>
+            <TimelineConnector />
+          </TimelineSeparator>
+          <TimelineContent>
+            <TimelineCard title={item.title} description={item.description} />
 
-      <TimelineItem>
-        {!isBelowMdScreen && (
-          <TimelineOppositeContent color="text.disabled"></TimelineOppositeContent>
-        )}
-        <TimelineSeparator>
-          <TimelineDot color="error"></TimelineDot>
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>
-          <Card>
-            <CardContent
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "10px",
-                padding: "16px",
-              }}
-            >
-              <Typography variant="h5" color="secondary">
-                Başlık
-              </Typography>
-              <Typography
-                variant="subtitle"
-                component="div"
-                sx={{
-                  textAlign: "justify",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  display: "-webkit-box",
-                  WebkitLineClamp: 5,
-                  WebkitBoxOrient: "vertical",
-                  whiteSpace: "pre-line",
-                }}
-              >
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-              </Typography>
+          </TimelineContent>
+        </TimelineItem>
 
-              {/* image için */}
-              {/* <Box className='flex items-center gap-2.5 w-fit rounded bg-actionHover plb-[5px] pli-2.5'>
-                    <img height={20} alt='documentation.pdf' src='images/icons/pdf-document.png' />
-                    <Typography className='font-medium'>documentation.pdf</Typography>
-                  </Box> */}
-
-              <Button
-                variant="contained"
-                color="primary"
-                sx={{
-                  width: "30%",
-                  padding: "8px",
-                  marginLeft: "auto",
-                }}
-              >
-                Detay
-              </Button>
-            </CardContent>
-          </Card>
-        </TimelineContent>
-      </TimelineItem>
-
-      <TimelineItem>
-        {!isBelowMdScreen && (
-          <TimelineOppositeContent color="text.disabled"></TimelineOppositeContent>
-        )}
-        <TimelineSeparator>
-          <TimelineDot color="info"></TimelineDot>
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>
-          <Card>
-            <CardContent
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "10px",
-                padding: "16px",
-              }}
-            >
-              <Typography variant="h5" color="secondary">
-                Başlık
-              </Typography>
-              <Typography
-                variant="subtitle"
-                component="div"
-                sx={{
-                  textAlign: "justify",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  display: "-webkit-box",
-                  WebkitLineClamp: 5,
-                  WebkitBoxOrient: "vertical",
-                  whiteSpace: "pre-line",
-                }}
-              >
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-              </Typography>
-
-              {/* image için */}
-              {/* <Box className='flex items-center gap-2.5 w-fit rounded bg-actionHover plb-[5px] pli-2.5'>
-                    <img height={20} alt='documentation.pdf' src='images/icons/pdf-document.png' />
-                    <Typography className='font-medium'>documentation.pdf</Typography>
-                  </Box> */}
-
-              <Button
-                variant="contained"
-                color="primary"
-                sx={{
-                  width: "30%",
-                  padding: "8px",
-                  marginLeft: "auto",
-                }}
-              >
-                Detay
-              </Button>
-            </CardContent>
-          </Card>
-        </TimelineContent>
-      </TimelineItem>
-
-      <TimelineItem>
-        {!isBelowMdScreen && (
-          <TimelineOppositeContent color="text.disabled"></TimelineOppositeContent>
-        )}
-        <TimelineSeparator>
-          <TimelineDot color="warning"></TimelineDot>
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>
-          <Card>
-            <CardContent
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "10px",
-                padding: "16px",
-              }}
-            >
-              <Typography variant="h5" color="secondary">
-                Başlık
-              </Typography>
-              <Typography
-                variant="subtitle"
-                component="div"
-                sx={{
-                  textAlign: "justify",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  display: "-webkit-box",
-                  WebkitLineClamp: 5,
-                  WebkitBoxOrient: "vertical",
-                  whiteSpace: "pre-line",
-                }}
-              >
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-              </Typography>
-
-              {/* image için */}
-              {/* <Box className='flex items-center gap-2.5 w-fit rounded bg-actionHover plb-[5px] pli-2.5'>
-                    <img height={20} alt='documentation.pdf' src='images/icons/pdf-document.png' />
-                    <Typography className='font-medium'>documentation.pdf</Typography>
-                  </Box> */}
-
-              <Button
-                variant="contained"
-                color="primary"
-                sx={{
-                  width: "30%",
-                  padding: "8px",
-                  marginLeft: "auto",
-                }}
-              >
-                Detay
-              </Button>
-            </CardContent>
-          </Card>
-        </TimelineContent>
-      </TimelineItem>
-    </Timeline>
+        <TimelineItem>
+          {!isBelowMdScreen && (
+            <TimelineOppositeContent color="text.disabled"></TimelineOppositeContent>
+          )}
+          <TimelineSeparator>
+            <TimelineDot color="warning"></TimelineDot>
+            <TimelineConnector />
+          </TimelineSeparator>
+          <TimelineContent>
+            <TimelineCard title={item.title} description={item.description} />
+          </TimelineContent>
+        </TimelineItem>
+      </Timeline>
+    </Box>
   );
 };
 

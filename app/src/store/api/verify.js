@@ -9,12 +9,11 @@ export const verifyUser = createAsyncThunk(
   "verifyUser",
   async (token, { rejectWithValue }) => {
     try {
-      const response = await fetch(
-        `/api/email/verify/${token}`,
-        {
-          method: "GET",
-        }
-      );
+      const response = await fetch(`/api/v1/public/verify/first/${token}`, {
+        method: "GET",
+      });
+
+      console.log(response);
       if (!response.ok) {
         const error = await response.json();
         return rejectWithValue(error);
@@ -36,12 +35,14 @@ const verifySlice = createSlice({
     });
     builder.addCase(verifyUser.fulfilled, (state, action) => {
       state.loading = false;
-      state.status = action.payload.Status;
+      state.status = action.payload.status_code;
+      state.error = null;
     });
     builder.addCase(verifyUser.rejected, (state, action) => {
       state.loading = false;
-      state.status = action.payload.Status;
-    })
+      state.status = action.payload.status_code;
+      state.error = action.error.message;
+    });
   },
 });
 

@@ -4,7 +4,7 @@ import {
   AddReactionOutlined,
   InsertEmoticonOutlined,
   InsertInvitationOutlined,
-  OpenInNewOutlined,
+  OpenInNewOutlined
 } from "@mui/icons-material";
 import {
   Badge,
@@ -15,21 +15,20 @@ import {
   CardContent,
   CardMedia,
   IconButton,
-  Typography,
+  Typography
 } from "@mui/material";
 import { useRouter } from "next/router";
 import { Fragment, useState } from "react";
 import { showDatetime } from "@/utils/timeOptions";
-import PostForm from "../forms/PostForm";
-import ClassicDialog from "../dialogs/ClassicDialog";
 import TagChip from "../chip/tag";
 import CategoryChip from "../chip/category";
+import ClassicDialog from "../dialogs/ClassicDialog";
+import PostForm from "../forms/PostForm";
 
-const PostCard = ({ settings, data }, props) => {
+const PostCard = ({ settings, data }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [open, setOpen] = useState(false);
-  const { image:imageProp, tags:tagsProp, categories:categoryProp, content:contentProp, title:titleProp } = props;
-  const [values, setValues] = useState(props);
+  const [values, setValues] = useState(data);
 
   const router = useRouter();
 
@@ -49,6 +48,7 @@ const PostCard = ({ settings, data }, props) => {
     isLiked: j,
     date,
   } = data;
+
 
   return (
     <Fragment>
@@ -175,6 +175,7 @@ const PostCard = ({ settings, data }, props) => {
                   <OpenInNewOutlined />
                   Edit Post
                 </Button>
+                
 
               ) : null}
             </Box>
@@ -210,6 +211,7 @@ const PostCard = ({ settings, data }, props) => {
         </CardActions>
       </Card>
 
+      
       <ClassicDialog
         open={open}
         setOpen={setOpen}
@@ -225,6 +227,7 @@ const PostCard = ({ settings, data }, props) => {
       >
         <PostForm values={values} setValues={setValues} />
       </ClassicDialog>
+
     </Fragment>
   );
 };

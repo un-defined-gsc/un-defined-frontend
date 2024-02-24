@@ -3,7 +3,7 @@ import { getLoading, getStatus, verifyUser } from "@/store/api/verify";
 import { CircularProgress } from "@mui/material";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { useSelector,useDispatch} from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 const Error = () => {
   return (
@@ -78,62 +78,60 @@ const Loading = () => {
 };
 
 const Token = () => {
-    const router = useRouter();
-    const dispatch = useDispatch();
-   
-    const status = useSelector(getStatus);
-    const loading = useSelector(getLoading);
-    const [noToken, setNoToken] = useState(false);
+  const router = useRouter();
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-      const { token } = router.query || null;
-  
-      if (token) dispatch(verifyUser(token));
-  
-      setInterval(() => {
-        if (!status && !token) {
-          setNoToken(true);
-        }
-      }, 6000);
-    }, [router.isReady]);
+  const status = useSelector(getStatus);
+  const loading = useSelector(getLoading);
+  const [noToken, setNoToken] = useState(false);
+
+  console.log(status);
+  console.log(loading);
+
+  useEffect(() => {
+    const token = router.query.token || null;
+    console.log(token);
+    if (token) dispatch(verifyUser(token));
+
+    setInterval(() => {
+      if (!status && !token) {
+        setNoToken(true);
+      }
+    }, 6000);
+  }, [router.isReady]);
 
   return (
     <div
-    style={{
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      flexDirection: "column",
-      border: "1px solid black",
-      borderRadius: "10px",
-      margin: "auto",
-      width: "50%",
-      height: "500px",
-      marginTop: "100px",
-      backgroundColor: "rgb(255, 255, 255)",
-    }}
-  >
-    {loading ? (
-      <Loading />
-    ) : status == 200 ? (
-      <Success />
-    ) : status == 400 ? (
-      <Error />
-    ) : noToken ? (
-      <div style={{ textAlign: "center" }}>No token found</div>
-    ) : (
-      <Loading />
-    )}
-  </div>
-  )
-}
-
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "column",
+        border: "1px solid black",
+        borderRadius: "10px",
+        margin: "auto",
+        width: "50%",
+        height: "500px",
+        marginTop: "100px",
+        backgroundColor: "rgb(255, 255, 255)",
+      }}
+    >
+      {loading ? (
+        <Loading />
+      ) : status == 200 ? (
+        <Success />
+      ) : status == 1005 ? (
+        <Error />
+      ) : noToken ? (
+        <div style={{ textAlign: "center" }}>No token found</div>
+      ) : (
+        <Loading />
+      )}
+    </div>
+  );
+};
 
 Token.guestGuard = true;
 Token.getLayout = (page) => <BlankLayout>{page}</BlankLayout>;
 
-
-
-
-export default Token
-
+export default Token;

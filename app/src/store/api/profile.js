@@ -7,22 +7,32 @@ const initialState = {
 };
 
 
-export const fetchProfile = createAsyncThunk('profile/fetchProfile', async (_, { rejectWithValue }) => {
-    try {
-        const data = {
-            avatar: "14.png",
-            name: "Angeline",
-            surname: "Christina",
-            email: "angelinachristina@gmail.com",
-            gender: "famale",
-            appeal: "she/her"
-        }
+export const fetchProfile = createAsyncThunk(
+    "fetchProfile",
+    async (_, { rejectWithValue }) => {
+        try {
+            const response = await fetch(
+                "/api/v1/private/user/me",
+            );
 
-        return data;
-    } catch (error) {
-        return rejectWithValue(error.response.data);
+            if (!response.ok) {
+                const errorData = await response.json();
+                return rejectWithValue(
+                    errorData.message || "Failed to fetch profile data"
+                );
+            }
+            const responseData = await response.json();
+            return responseData.data;
+        } catch (err) {
+            console.error(err);
+            return rejectWithValue(
+                "An error occurred during the profile request."
+            );
+        }
     }
-})
+);
+
+
 export const fetchProfileById = createAsyncThunk('profile/fetchProfileById', async (id, { rejectWithValue }) => {
     try {
         const data = [
@@ -67,7 +77,6 @@ const profileSlice = createSlice({
             state.loading = false;
             state.error = action.payload;
         });
-
         builder.addCase(fetchProfileById.pending, (state) => {
             state.loading = true;
         });

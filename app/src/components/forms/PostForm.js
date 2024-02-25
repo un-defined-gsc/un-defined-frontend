@@ -8,25 +8,13 @@ import {
 } from "@mui/material";
 import TagField from "./components/TagField";
 
-
-const PostForm = ({ values = null, setValues = () => { } }) => {
-  //     const [values, setValues] = useState({
-  //       image: "",
-  //       tags: "",
-  //       category: "",
-  //       content: "",
-  //       title: ""
-  //   });
+const PostForm = ({ values = null, setValues = () => {} }) => {
 
   const handleImage = (e) => {
-    setValues({ ...values, image: e.target.files[0] });
+    setValues({ ...values, image: e.target.value });
   };
 
-  const handleTag = (e) => {
-    setValues({ ...values, tags: e.target.value });
-  };
-
-  console.log("values", values)
+  console.log("values", values);
 
   return (
     <Grid container spacing={3}>
@@ -37,9 +25,7 @@ const PostForm = ({ values = null, setValues = () => { } }) => {
             name="title"
             label="Title"
             value={values?.title || ""}
-            onChange={(e) =>
-              setValues({ ...values, title: e.target.value })
-            }
+            onChange={(e) => setValues({ ...values, title: e.target.value })}
           />
         </FormControl>
       </Grid>
@@ -47,15 +33,13 @@ const PostForm = ({ values = null, setValues = () => { } }) => {
         <FormControl fullWidth>
           <TextField
             id="outlined-required"
-            name="description"
-            label="Description"
+            name="content"
+            label="content"
             multiline
             minRows={2}
             maxRows={8}
-            value={values?.description || ""}
-            onChange={(e) =>
-              setValues({ ...values, description: e.target.value })
-            }
+            value={values?.content || ""}
+            onChange={(e) => setValues({ ...values, content: e.target.value })}
           />
         </FormControl>
       </Grid>
@@ -72,29 +56,29 @@ const PostForm = ({ values = null, setValues = () => { } }) => {
       </Grid>
       <Grid item xs={12}>
         <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">
-            Category
-          </InputLabel>
+          <InputLabel id="demo-simple-select-label">Category</InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             label="Category"
-            value={"job"}
-            onChange={(e) =>
-              setValues({ ...values, category: e.target.value })
-            }
+            value={values?.category || ""}
+            onChange={(e) => setValues({ ...values, category: e.target.value })}
           >
-            <MenuItem value={"job"}>Job</MenuItem>
-            <MenuItem value={"category2"}>category2</MenuItem>
-            <MenuItem value={"category3"}>category3</MenuItem>
-            <MenuItem value={"category4"}>category4</MenuItem>
+            <MenuItem value={"jobadvert"}>Job</MenuItem>
+            <MenuItem value={"question"}>Question</MenuItem>
+            <MenuItem value={"problem"}>Problem</MenuItem>
+            <MenuItem value={"story"}>Story</MenuItem>
           </Select>
         </FormControl>
-      </Grid> 
-
-       <Grid item xs={12}>
-        <TagField setTags={(tag) => setValues({ ...values, tags: tag })} tags={values?.tags} />
       </Grid>
+
+      <Grid item xs={12}>
+        <TagField
+          setTags={(tag) => setValues({ ...values, tags: tag })}
+          tags={values?.tags}
+        />
+      </Grid>
+
     </Grid>
   );
 };

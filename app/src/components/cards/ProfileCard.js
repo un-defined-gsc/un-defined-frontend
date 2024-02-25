@@ -22,14 +22,15 @@ const ProfileCard = (props) => {
     const [values, setValues] = useState(props)
 
     const {
-        avatar,
-        name,
-        surname,
+        firstname,
+        lastname,
         email,
         gender,
         appeal,
         priv
     } = props;
+
+    console.log(props)
 
     return (
         <Fragment>
@@ -84,7 +85,7 @@ const ProfileCard = (props) => {
                                     variant="body2"
                                     color="secondary"
                                 >
-                                    <PersonOutlineOutlinedIcon /> <b>Full Name:</b> {name} {surname}
+                                    <PersonOutlineOutlinedIcon /> <b>Full Name:</b> {props.user?.firstname} {props.user?.lastname}
                                 </Typography>
                             </Grid>
 
@@ -98,7 +99,7 @@ const ProfileCard = (props) => {
                                     variant="body2"
                                     color="secondary"
                                 >
-                                    <ContactMailOutlinedIcon /> <b>E-mail:</b> {email}
+                                    <ContactMailOutlinedIcon /> <b>E-mail:</b> {props.user?.email}
                                 </Typography>
                             </Grid>
 
@@ -112,7 +113,7 @@ const ProfileCard = (props) => {
                                     variant="body2"
                                     color="secondary"
                                 >
-                                    <WcOutlinedIcon /> <b>Gender:</b> {gender}
+                                    <WcOutlinedIcon /> <b>Gender:</b> {props.user?.gender}
                                 </Typography>
                             </Grid>
 
@@ -126,7 +127,7 @@ const ProfileCard = (props) => {
                                     variant="body2"
                                     color="secondary"
                                 >
-                                    <RecordVoiceOverOutlinedIcon /> <b>Appeal:</b> {appeal}
+                                    <RecordVoiceOverOutlinedIcon /> <b>Appeal:</b> {props.user?.appeal}
                                 </Typography>
                             </Grid>
                         </Grid>
@@ -140,7 +141,7 @@ const ProfileCard = (props) => {
                         open={priv && open}
                         setOpen={setOpen}
                         title={<Box>
-                            Change <b>{name} {surname}</b>'s Profile Informations
+                            Change <b>{props.user?.firstname} {props.user?.lastname}</b>'s Profile Informations
                         </Box>}
                         subtitle=""
                         actions={

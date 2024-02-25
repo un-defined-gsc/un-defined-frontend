@@ -19,7 +19,6 @@ import {
 } from "@mui/material";
 import { useRouter } from "next/router";
 import { Fragment, useState } from "react";
-import { showDatetime } from "@/utils/timeOptions";
 import TagChip from "../chip/tag";
 import CategoryChip from "../chip/category";
 import ClassicDialog from "../dialogs/ClassicDialog";
@@ -40,14 +39,17 @@ const PostCard = ({ settings, data }) => {
 
   const {
     image = "https://via.placeholder.com/800x300",
-    categories = null,
+    category = null,
     tags = null,
     title,
-    description,
+    content,
     likes,
     isLiked: j,
     date,
+    created_at
   } = data;
+
+  console.log(data);
 
 
   return (
@@ -70,23 +72,19 @@ const PostCard = ({ settings, data }) => {
               justifyContent: "space-between",
             }}
           >
-            {categories?.length > 0 && Array.isArray(categories)
-              ? categories?.map((category, index) => (
+   
                 <CategoryChip
-                key={index}
-                label={categories}
+                label={category}
                 isActive={true}
                 info
                 />
-              ))
-              : null}
+          
 
             <Typography
               variant="caption"
               sx={{ display: "flex", alignItems: "center", gap: "8px" }}
             >
-              {showDatetime(date)}
-
+              {(created_at).split("T")[0] }
               <InsertInvitationOutlined />
             </Typography>
           </Box>
@@ -108,7 +106,7 @@ const PostCard = ({ settings, data }) => {
               whiteSpace: "pre-line",
             }}
           >
-            {description}
+            {content}
           </Typography>
           <Box
             sx={{
@@ -203,7 +201,7 @@ const PostCard = ({ settings, data }) => {
               ? tags?.map((tag, index) => (
                 <TagChip
                   key={index}
-                  label={tag}
+                  label={tag.tag}
                 />
               ))
               : null}

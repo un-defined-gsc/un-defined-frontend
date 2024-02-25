@@ -2,14 +2,15 @@ import { theme } from "@/configs/theme";
 import { Card, CardContent, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 
-const InterestCard = ({title,icon,index}) => {
-    const router = useRouter();
+const InterestCard = ({ title, icon, index }) => {
+  const router = useRouter();
 
-    const item = {
-        name: title,
-        icon: icon,
-        index: index
-    }
+  const item = {
+    name: title,
+    icon: icon,
+    index: index
+  }
+
   return (
     <Card
       sx={{

@@ -15,6 +15,7 @@ const defineRulesFor = (role, subject, permissions) => {
   switch (role) {
     case 'admin':
       can('manage', 'all')
+      can(['read'], "admin-options")
       break
 
     case 'user':
@@ -23,6 +24,7 @@ const defineRulesFor = (role, subject, permissions) => {
       can(['read'], "profile-public")
       can(['read'], "profile-private")
       can(['read'], "interests")
+      can(['read'], "timeline")
       break
 
     default:

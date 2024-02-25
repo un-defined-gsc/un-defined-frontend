@@ -26,7 +26,7 @@ import ClassicDialog from "../dialogs/ClassicDialog";
 import PostForm from "../forms/PostForm";
 
 const PostCard = ({ settings, data }) => {
-  const [isLiked, setIsLiked] = useState(false);
+  const [isLiked, setIsLiked] = useState(data.isLiked);
   const [open, setOpen] = useState(false);
   const [values, setValues] = useState(data);
 

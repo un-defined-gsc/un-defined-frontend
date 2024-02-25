@@ -198,9 +198,8 @@ const Register = () => {
               >
                 <Button
                   fullWidth
-                  variant="standard"
+                  variant="outlined"
                   sx={{
-                    border: "none",
                     backgroundColor: "transparent !important",
                     color: "secondary",
                   }}

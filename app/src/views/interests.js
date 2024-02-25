@@ -21,41 +21,50 @@ const data = [
   {
     id: 1,
     name: "Backend",
-    icon: <ArrowForwardIcon />,
     data: [
+
       {
-        name: "Node.js",
-        icon: <OpenInNewOutlinedIcon />,
+        name: "Go Programming Language",
       },
-      {
-        name: "Go Programming Language asdsad ada sdasd ad a",
-        icon: <OpenInNewOutlinedIcon />,
-      },
-      {
-        name: "Redis",
-        icon: <OpenInNewOutlinedIcon />,
-      },
-      {
-        name: "Postgres",
-        icon: <OpenInNewOutlinedIcon />,
-      },
+
     ],
   },
   {
     id: 2,
     name: "Frontend",
-    icon: <ArrowForwardIcon />,
     data: [
       {
         name: "React.js",
-        icon: <OpenInNewOutlinedIcon />,
       },
       {
-        name: "Vue.js",
-        icon: <OpenInNewOutlinedIcon />,
+        name: "Angular.js",
+      },
+      {
+        name: "Next.js",
+      }
+    ],
+  },
+  {
+    id : 3,
+    name: "Mobile",
+    data: [
+      {
+        name: "Kotlin",
+      },
+      {
+        name: "Flutter",
       },
     ],
   },
+  {
+    id : 4,
+    name : "DevOps",
+    data: [
+      {
+        name: "Google Cloud",
+      },
+    ],
+  }
 ];
 
 const Interests = () => {
@@ -139,8 +148,7 @@ const Interests = () => {
                   variant="body3"
                   sx={{ display: "flex", alignItems: "center", gap: "1rem" }}
                 >
-                  {item.icon}
-
+                  {<ArrowForwardIcon />}
                   {item.name}
                 </Typography>
               </Grid>

@@ -79,12 +79,12 @@ const PostForm = ({ values = null, setValues = () => { } }) => {
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             label="Category"
-            value={values?.category}
+            value={"job"}
             onChange={(e) =>
               setValues({ ...values, category: e.target.value })
             }
           >
-            <MenuItem value={"category1"}>category1</MenuItem>
+            <MenuItem value={"job"}>Job</MenuItem>
             <MenuItem value={"category2"}>category2</MenuItem>
             <MenuItem value={"category3"}>category3</MenuItem>
             <MenuItem value={"category4"}>category4</MenuItem>

@@ -47,7 +47,7 @@ const Layout = ({ children }) => {
                             minHeight: `calc(100vh - 80px)`,
                             maxWidth: '100%',
                             width: '100%',
-                            py: '32px',
+                            py: '52px',
                             ml: '332px'
                         }}
                     >

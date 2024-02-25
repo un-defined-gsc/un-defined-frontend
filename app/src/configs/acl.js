@@ -16,6 +16,7 @@ const defineRulesFor = (role, subject, permissions) => {
     case 'admin':
       can('manage', 'all')
       can(['read'], "admin-options")
+      can(['read'], "admin-addroadmap")
       break
 
     case 'user':

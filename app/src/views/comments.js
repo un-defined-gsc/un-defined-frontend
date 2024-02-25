@@ -1,10 +1,5 @@
 import PostCard from "@/components/cards/PostCard";
 import CustomTooltip from "@/components/tooltip";
-import { Badge } from "@mui/base";
-import {
-  AddReactionOutlined,
-  InsertEmoticonOutlined
-} from "@mui/icons-material";
 import {
   Box,
   Card,
@@ -12,7 +7,7 @@ import {
   Divider,
   IconButton,
   TextField,
-  Typography
+  Typography,
 } from "@mui/material";
 import { useState } from "react";
 import SendIcon from "@mui/icons-material/Send";
@@ -30,15 +25,13 @@ const Comments = () => {
   };
 
   const data = {
-    image: "https://www.ssb.gov.tr/Images/Uploads/MyContents/TY_20170630173853932630.jpg",
-    categories: [
-      "Technology",
-    ],
-    title: "Title",
-    description: "Description",
-    likes: 0,
+    image:"/Default_international_space_station_1.jpg",
+    categories: ["Story"],
+    title: "My Story",
+    description:
+      "Olivia was a 10-year-old girl whose dream was always to become a good aerospace engineer and go into space. She had a lot of difficulties when she was little, she was always told that she couldn't do it, that nothing like that would come out of this small town, but she didn't give up. she is now working as a space engineer at NASA. As we always say, never give up, trust yourself!",
     isLiked: false,
-    date: "2021-10-10T10:10:10",
+    date: "2024-02-21T10:10:10",
   };
 
   return (
@@ -58,7 +51,7 @@ const Comments = () => {
             variant="p"
             component="div"
           >
-            1 Comments
+            3 Comments
           </Typography>
           <Divider
             sx={{
@@ -101,7 +94,6 @@ const Comments = () => {
             />
           </Box>
 
-          {/* commit page */}
           <Box
             sx={{
               display: "flex",
@@ -117,7 +109,7 @@ const Comments = () => {
                 height: "50px",
                 marginRight: "0.5rem",
               }}
-              src="https://via.placeholder.com/150"
+              src="/avatars/6.png"
             />
 
             <Box
@@ -135,60 +127,97 @@ const Comments = () => {
                 variant="p"
                 component="div"
               >
-                John Doe
+                Ashley Smith
               </Typography>
-              <Typography
-                variant="p"
-                component="div"
-                sx={{
-                  color: "gray",
-                  fontSize: "12px",
-                }}
-              >
-                a year ago
+              <Typography variant="p" component="div" sx={{}}>
+                That is girl power!
               </Typography>
-              <Typography
-                variant="p"
-                component="div"
-                sx={{
-                  color: "background.default",
-                }}
-              >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </Typography>
-
-              <Box>
-                <CustomTooltip
-                  title={isLiked ? "Unlike" : "Like"}
-                  placement="bottom"
-                  followCursor
-                >
-                  <IconButton
-                    sx={{
-                      color: isLiked ? "primary.main" : "text.primary",
-                      marginLeft: "-8px",
-                    }}
-                    onClick={() => setIsLiked(!isLiked)}
-                    size="small"
-                  >
-                    <Badge
-                      anchorOrigin={{
-                        vertical: "top",
-                        horizontal: "left",
-                      }}
-                      badgeContent={isLiked ? 2 : 1}
-                    >
-                      {isLiked ? (
-                        <InsertEmoticonOutlined />
-                      ) : (
-                        <AddReactionOutlined />
-                      )}
-                    </Badge>
-                  </IconButton>
-                </CustomTooltip>
-              </Box>
             </Box>
           </Box>
+          <Box
+            sx={{
+              display: "flex",
+              gap: "5px",
+              flexWrap: "wrap",
+              justifyContent: "flex-start",
+              marginTop: "30px",
+            }}
+          >
+            <ProfileAvatar
+              style={{
+                width: "50px",
+                height: "50px",
+                marginRight: "0.5rem",
+              }}
+              src="/avatars/31.png"
+            />
+
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "5px",
+              }}
+            >
+              <Typography
+                sx={{
+                  fontWeight: "bold",
+                  color: "primary.main",
+                }}
+                variant="p"
+                component="div"
+              >
+                Phoebe  Duffay
+              </Typography>
+              <Typography variant="p" component="div" sx={{}}>
+                This story is so inspiring. I love it! I hope to be like her one day.
+              </Typography>
+            </Box>
+            
+          </Box>
+
+          <Box
+            sx={{
+              display: "flex",
+              gap: "5px",
+              flexWrap: "wrap",
+              justifyContent: "flex-start",
+              marginTop: "30px",
+            }}
+          >
+            <ProfileAvatar
+              style={{
+                width: "50px",
+                height: "50px",
+                marginRight: "0.5rem",
+              }}
+              src="/avatars/14.png"
+            />
+
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "5px",
+              }}
+            >
+              <Typography
+                sx={{
+                  fontWeight: "bold",
+                  color: "primary.main",
+                }}
+                variant="p"
+                component="div"
+              >
+                Angeline Christina
+              </Typography>
+              <Typography variant="p" component="div" sx={{}}>
+                This story is very important for women. I hope to see more stories like this.
+              </Typography>
+            </Box>
+            
+          </Box>
+
         </CardContent>
       </Card>
     </>

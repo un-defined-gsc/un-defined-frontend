@@ -28,16 +28,36 @@ const Navbar = () => {
         backgroundColor: (theme) => theme.palette.background.default,
       }}
     >
+
+                <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+                > 
+            <img
+              src="/logo-vertical.png"
+              alt="logo"
+              style={{
+                maxHeight: "60px",
+                width: "auto",
+              }}
+            />
+          </Box>
+
+          <Divider />
+
       <Box
-        sx={{ width: "100%", display: "flex", justifyContent: "flex-start" }}
+        sx={{ width: "100%", display: "flex", justifyContent: "center" }}
       >
-        <ProfileAvatar src="https://www.w3schools.com/howto/img_avatar.png" />
+        <ProfileAvatar src="/avatars/14.png" />
       </Box>
 
       <Box>
-        <Typography variant="body2">Name</Typography>
+        <Typography variant="body2">Angeline Christina</Typography>
         <Typography variant="body1" color="secondary">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+         Hi my name is Angeline Christina, I'm a software engineer and I'm here to help you. 
         </Typography>
       </Box>
 

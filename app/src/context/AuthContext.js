@@ -93,7 +93,7 @@ const AuthProvider = ({ children }) => {
     if (userData) {
       setUser(userData);
     } else {
-      const user = { id: 1, name: "John Doe", role: "admin" };
+      const user = { id: 1, name: "John Doe", role: "user" };
       setUser(user);
     }
 

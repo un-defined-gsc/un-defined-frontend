@@ -10,11 +10,11 @@ const initialState = {
 export const fetchProfile = createAsyncThunk('profile/fetchProfile', async (_, { rejectWithValue }) => {
     try {
         const data = {
-            avatar: "https://www.w3schools.com/howto/img_avatar.png",
-            name: "Burak",
-            surname: "Bıçakcıoğlu",
-            email: "burakbicakci14@gmail.com",
-            gender: "male",
+            avatar: "14.png",
+            name: "Angeline",
+            surname: "Christina",
+            email: "angelinachristina@gmail.com",
+            gender: "famale",
             appeal: "she/her"
         }
 
@@ -32,7 +32,7 @@ export const fetchProfileById = createAsyncThunk('profile/fetchProfileById', asy
                 surname: "Bıçakcıoğlu",
                 email: "burakbicakci14@gmail.com",
                 gender: "male",
-                appeal: "she/her"
+                appeal: "he/his"
             },
             {
                 avatar: "https://imgb.ifunny.co/images/88a18ba94d62c93838d3f56ededeba62e43e2e24e8c0f28947a444951ab04a93_1.webp",

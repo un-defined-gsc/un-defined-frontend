@@ -116,9 +116,8 @@ const Login = () => {
               >
                 <Button
                   fullWidth
-                  variant="standard"
+                  variant="outlined"
                   sx={{
-                    border: "none",
                     backgroundColor: "transparent !important",
                     color: "secondary",
                   }}

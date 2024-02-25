@@ -25,15 +25,17 @@ const Aside = () => {
 
   const categories = [
     {
-      title: "Technology",
-      selected: true,
+      title: "Story",
     },
     {
-      title: "Science",
+      title: "Question",
     },
     {
-      title: "Health",
+      title: "Problem",
     },
+    {
+      title: "Job",
+    }
   ];
 
   const options = searchData.map((option) => {
@@ -48,7 +50,7 @@ const Aside = () => {
     <Box
       sx={{
         width: "100%",
-        maxWidth: "300px",
+        maxWidth: "330px",
         maxHeight: "100vh",
         height: "calc(100vh - 80px)",
         position: "relative",
@@ -152,11 +154,20 @@ const Aside = () => {
                 display: "flex",
                 gap: "0.5rem",
                 flexWrap: "wrap",
+                maxWidth: "300px",
               }}
             >
-              <TagChip label="Technology" />
-              <TagChip label="Science" />
-              <TagChip label="Health" />
+              <TagChip label="FindJob" />
+              <TagChip label="MyStory" />
+              <TagChip label="IhaveQuestions" />
+              <TagChip label="Story" />
+              <TagChip label="Life" />
+              <TagChip label="Love" />
+              <TagChip label="Happiness" />
+              <TagChip label="Strong" />
+              <TagChip label="GirlPower" />
+              <TagChip label="Love" />
+              <TagChip label="Help" />
             </Box>
           </Box>
         </Box>

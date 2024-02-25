@@ -54,7 +54,7 @@ const ProfileCard = (props) => {
                                     height: "100%",
                                 }}
                             >
-                                <ProfileAvatar src={avatar || null} />
+                                <ProfileAvatar src={"/avatars/14.png" || null} />
 
                                 {
                                     priv

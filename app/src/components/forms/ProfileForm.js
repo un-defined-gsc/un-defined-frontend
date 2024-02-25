@@ -18,7 +18,7 @@ const ProfileForm = ({ values = null, setValues = () => { } }) => {
             <Grid container spacing={3}>
                 <Grid item xs={12}>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', flexDirection: 'column', justifyItems: 'center' }}>
-                        <ProfileAvatar src={values?.avatar || null} />
+                        <ProfileAvatar src={"/avatars/14.png" || null} />
 
                         <Button variant="contained" color="info">
                             Change Avatar
@@ -84,11 +84,11 @@ const ProfileForm = ({ values = null, setValues = () => { } }) => {
                                         labelId="demo-simple-select-label"
                                         id="demo-simple-select"
                                         label="Gender"
-                                        value={values?.gender}
+                                        value={"female"}
                                         onChange={(e) => setValues({ ...values, gender: e.target.value })}
                                     >
                                         <MenuItem value={"male"}>Male</MenuItem>
-                                        <MenuItem value={"female"}>Female</MenuItem>
+                                        <MenuItem selected value={"female"}>Female</MenuItem>
                                         <MenuItem value={"other"}>Other</MenuItem>
                                         <MenuItem value={"rather-not-say"}>
                                             Rather Not Say
@@ -106,7 +106,7 @@ const ProfileForm = ({ values = null, setValues = () => { } }) => {
                                         labelId="demo-simple-select-label"
                                         id="demo-simple-select"
                                         label="Gender"
-                                        value={values?.appeal}
+                                        value={"she"}
                                         onChange={(e) => setValues({ ...values, appeal: e.target.value })}
                                     >
                                         <MenuItem value={"she"}>She/Her</MenuItem>

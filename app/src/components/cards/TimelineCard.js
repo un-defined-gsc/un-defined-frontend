@@ -6,34 +6,44 @@ import {
   CardContent,
   Divider,
   Drawer,
-  Typography
+  Typography,
 } from "@mui/material";
 import { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import ClassicDialog from "../dialogs/ClassicDialog";
 import IntestForm from "../forms/InterestForm";
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import Can from "@/layout/components/acl/Can";
+import Link from "next/link";
 
 const TimelineCard = ({ title, description }) => {
   const data = [
     {
-      name: "Node.js",
-      details : "Node.js is an open-source, cross-platform, back-end JavaScript runtime environment that runs on the V8 engine and executes JavaScript code outside a web browser.",
+      name: "Quick Start",
+      description: "You can start learning GoLang by following the official documentation.",
+      details: "https://go.dev/doc/tutorial/getting-started",
     },
     {
-      name: "Go Programming",
-      details : "Go is an open source programming language that makes it easy to build simple, reliable, and efficient software.",
+      name: "Loops & Conditions",
+      description: "The control structures of Go are related to those of C but differ in important ways.",
+      details: "https://go.dev/doc/effective_go#if",
     },
     {
-      name: "Redis",
-      details : "Redis is an open source (BSD licensed), in-memory data structure store, used as a database, cache, and message broker.",
+      name: "Data Types & Variables",
+      description: "Finally, each source file can define its own niladic init function to set up whatever state is required. ",
+      details: "https://go.dev/doc/effective_go#variables",
     },
     {
-      name: "Postgres",
-      details : "PostgreSQL is a powerful, open source object-relational database system with over 30 years of active development that has earned it a strong reputation for reliability, feature robustness, and performance.",
+      name: "Arrays & Slices",
+      description: "Arrays are useful when planning the detailed layout of memory and sometimes can help avoid allocation, but primarily they are a building block for slices, the subject of the next section",
+      details: "https://go.dev/doc/effective_go#arrays",
+    },
+    {
+      name: "Maps & Structs",
+      description: "Maps are a convenient and powerful built-in data structure that associate values of one type (the key) with values of another type (the element or value)",
+      details: "https://go.dev/doc/effective_go#maps",
     },
   ];
 
@@ -60,7 +70,7 @@ const TimelineCard = ({ title, description }) => {
           padding: "16px",
         }}
       >
-        <Typography variant="h5" color="secondary">
+        <Typography variant="h5" color="info">
           {item.title}
         </Typography>
         <Typography
@@ -84,21 +94,23 @@ const TimelineCard = ({ title, description }) => {
           <img height={20} alt='documentation.pdf' src='images/icons/pdf-document.png' />
           <Typography className='font-medium'>documentation.pdf</Typography>
         </Box> */}
-
+      </CardContent>
+      <CardActions
+        sx={{
+          display: "flex",
+          justifyContent: "flex-end",
+        }}
+      >
         <Button
-          variant="contained"
-          color="primary"
+          variant="outlined"
+          color="info"
           sx={{
-            width: "30%",
-            padding: "8px",
-            marginLeft: "auto",
+            width: "fit-content",
           }}
           onClick={() => setOpenDrawer(true)}
         >
-          Detay
+          Details
         </Button>
-      </CardContent>
-      <CardActions>
         <Drawer
           variant="temporary"
           anchor="right"
@@ -126,8 +138,8 @@ const TimelineCard = ({ title, description }) => {
                 padding: "16px",
               }}
             >
-              <Typography variant="h5" color="secondary">
-                Title
+              <Typography variant="h5" color="info">
+                Syntax & Basic Concepts
               </Typography>
 
               <Typography
@@ -139,76 +151,94 @@ const TimelineCard = ({ title, description }) => {
                   textOverflow: "ellipsis",
                 }}
               >
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s Lorem Ipsum is simply dummy text of
-                the printing and typesetting industry. Lorem Ipsum has been the
-                industry's standard dummy text ever since the 1500s
+                By learning the basic concepts and syntax structure of GoLang
+                language, we will make an introduction to GoLang language and
+                its basic concepts. We will also learn about the basic syntax of
+                GoLang language.
               </Typography>
 
               <Divider />
 
               {data.map((item, index) => (
                 <div>
-                <Accordion key={index}>
-                  <AccordionSummary
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                  >
-                    <Typography>{item.name}</Typography>
-                  </AccordionSummary>
-                  <AccordionDetails>
-                    <Typography
-                      variant="subtitle"
-                      component="div"
-                      sx={{
-                        textAlign: "justify",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                      }}
-                    >{item.details}</Typography>
-                  </AccordionDetails>
-                </Accordion>
+                  <Accordion key={index}>
+                    <AccordionSummary
+                      aria-controls="panel1a-content"
+                      id="panel1a-header"
+                    >
+                      <Typography>{item.name}</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      <Typography
+                        component="div"
+                        sx={{
+                          textAlign: "justify",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                          color: "blue !important",
+                        }}
+                      >
+                        <Typography
+                          variant="subtitle"
+                          component="div"
+                          sx={{
+                            textAlign: "justify",
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                          }}
+                        >{item.description}</Typography>
+
+                        <Link
+                          sx={{
+                            marginTop: "10px",
+                          }}
+                        href={item.details}>
+                           {item.details}
+                        </Link>
+                      </Typography>
+                    </AccordionDetails>
+                  </Accordion>
                 </div>
               ))}
-
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "10px",
-                  padding: "16px",
-                }}
-              >
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={() => setOpen(true)}
+              <Can I="read" a="admin-addroadmap">
+                <Box
                   sx={{
-                    width: "30%",
-                    padding: "8px",
-                    marginLeft: "auto",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "10px",
+                    padding: "16px",
                   }}
                 >
-                  Add RoadMap
-                </Button>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => setOpen(true)}
+                    sx={{
+                      width: "30%",
+                      padding: "8px",
+                      marginLeft: "auto",
+                    }}
+                  >
+                    Add RoadMap
+                  </Button>
 
-                <ClassicDialog
-                  open={open}
-                  setOpen={setOpen}
-                  actions={
-                    <Button
-                      variant="contained"
-                      color="success"
-                      onClick={() => setOpen(false)}
-                    >
-                      Save
-                    </Button>
-                  }
-                >
-                  <IntestForm values={values} setValues={setValues} />
-                </ClassicDialog>
-              </Box>
+                  <ClassicDialog
+                    open={open}
+                    setOpen={setOpen}
+                    actions={
+                      <Button
+                        variant="contained"
+                        color="success"
+                        onClick={() => setOpen(false)}
+                      >
+                        Save
+                      </Button>
+                    }
+                  >
+                    <IntestForm values={values} setValues={setValues} />
+                  </ClassicDialog>
+                </Box>
+              </Can>
             </Box>
           </Box>
         </Drawer>

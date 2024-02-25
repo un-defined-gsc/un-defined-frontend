@@ -4,14 +4,7 @@ import ProfileAvatar from '../images/ProfileAvatar';
 
 const ProfileForm = ({ values = null, setValues = () => { } }) => {
 
-    // const [values, setValues] = useState({
-    //     avatar: "",
-    //     name: "",
-    //     surname: "",
-    //     email: "",
-    //     gender: "",
-    //     appeal: "",
-    // });
+    console.log("values",values)
 
     return (
         <Fragment>
@@ -41,10 +34,10 @@ const ProfileForm = ({ values = null, setValues = () => { } }) => {
                                 <FormControl fullWidth>
                                     <TextField
                                         id="outlined-required"
-                                        name="name"
+                                        name="firstname"
                                         label="Name"
-                                        value={values?.name || ""}
-                                        onChange={(e) => setValues({ ...values, name: e.target.value })}
+                                        value={values?.user?.firstname || ""}
+                                        onChange={(e) => setValues({ ...values, firstname: e.target.value })}
                                     />
                                 </FormControl>
                             </Grid>
@@ -53,10 +46,10 @@ const ProfileForm = ({ values = null, setValues = () => { } }) => {
                                 <FormControl fullWidth>
                                     <TextField
                                         id="outlined-required"
-                                        name="surname"
+                                        name="lastname"
                                         label="Surname"
-                                        value={values?.surname || ""}
-                                        onChange={(e) => setValues({ ...values, surname: e.target.value })}
+                                        value={values?.user?.lastname || ""}
+                                        onChange={(e) => setValues({ ...values, lastname: e.target.value })}
                                     />
                                 </FormControl>
                             </Grid>
@@ -68,7 +61,7 @@ const ProfileForm = ({ values = null, setValues = () => { } }) => {
                                         name="email"
                                         label="Email"
                                         type="email"
-                                        value={values?.email || ""}
+                                        value={values?.user?.email || ""}
                                         onChange={(e) => setValues({ ...values, email: e.target.value })}
                                     />
                                 </FormControl>
@@ -84,11 +77,11 @@ const ProfileForm = ({ values = null, setValues = () => { } }) => {
                                         labelId="demo-simple-select-label"
                                         id="demo-simple-select"
                                         label="Gender"
-                                        value={"female"}
+                                        value={values.user?.gender || ""}
                                         onChange={(e) => setValues({ ...values, gender: e.target.value })}
                                     >
                                         <MenuItem value={"male"}>Male</MenuItem>
-                                        <MenuItem selected value={"female"}>Female</MenuItem>
+                                        <MenuItem value={"female"}>Female</MenuItem>
                                         <MenuItem value={"other"}>Other</MenuItem>
                                         <MenuItem value={"rather-not-say"}>
                                             Rather Not Say
@@ -106,7 +99,7 @@ const ProfileForm = ({ values = null, setValues = () => { } }) => {
                                         labelId="demo-simple-select-label"
                                         id="demo-simple-select"
                                         label="Gender"
-                                        value={"she"}
+                                        value = {values?.user?.appeal || ""}
                                         onChange={(e) => setValues({ ...values, appeal: e.target.value })}
                                     >
                                         <MenuItem value={"she"}>She/Her</MenuItem>

@@ -11,7 +11,7 @@ import {
 import { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import ClassicDialog from "../dialogs/ClassicDialog";
-import IntestForm from "../forms/IntrestForm";
+import IntestForm from "../forms/InterestForm";
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';

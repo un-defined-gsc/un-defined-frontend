@@ -15,21 +15,27 @@ import CloseIcon from "@mui/icons-material/Close";
 import ClassicDialog from "@/components/dialogs/ClassicDialog";
 import PostForm from "@/components/forms/PostForm";
 import { useDispatch, useSelector } from "react-redux";
-import { addPost, fetchPost, getPost } from "@/store/api/post";
+import { createPost, fetchPosts, getFilter, getPosts } from "@/store/api/post";
 import PostCard from "@/components/cards/PostCard";
 
-const Social = (props) => {
+const Social = () => {
+
+  // ** Hooks
   const arrow = useRef();
+  const dispatch = useDispatch();
 
+  // ** States & Data
+  const [values, setValues] = useState(null);
+  const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const PostAdd = () => {
-    dispatch(addPost(values));
-    setOpen(false);
-    setValues({});
-  };
+  const data = useSelector(getPosts);
+  const filters = useSelector(getFilter);
 
-  const handleClose = () => {
-    setValues({});
+  const settings = {
+    showComments: true,
+    showLikes: true,
+    showReactions: true,
   };
 
   useEffect(() => {
@@ -44,30 +50,23 @@ const Social = (props) => {
     });
   }, []);
 
-
-  const [open, setOpen] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-
-  const settings = {
-    showComments: true,
-    showLikes: true,
-    showReactions: true,
-  };
-
-  const dispatch = useDispatch();
-  const data = useSelector(getPost);
-
   useEffect(() => {
-    dispatch(fetchPost());
-  }, []);
-
-
-console.log("data", data)
+    dispatch(fetchPosts());
+  }, [filters]);
 
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down("mdlg"));
   const Handletoggle = () => setIsOpen(!isOpen);
 
-  const [values, setValues] = useState(props);
+
+  const addPost = () => {
+    dispatch(createPost(values));
+    setOpen(false);
+    setValues(null);
+  };
+
+  const handleClose = () => {
+    setValues(null);
+  };
 
   return (
     <Fragment>
@@ -86,7 +85,7 @@ console.log("data", data)
               justifyContent: "center",
               alignItems: "center",
               width: "100%",
-              height: "4%",
+              maxHeight: "64px",
               padding: "1rem",
               marginLeft: "1rem",
             }}
@@ -119,7 +118,7 @@ console.log("data", data)
             </Button>
           </Card>
 
-          {data.length > 0 &&
+          {data?.length > 0 &&
             data?.map((item, i) => (
               <Grid item xs={12} key={i}>
                 <PostCard
@@ -192,7 +191,7 @@ console.log("data", data)
             <Button
               variant="contained"
               color="success"
-              onClick={PostAdd}
+              onClick={addPost}
             >
               Create
             </Button>

@@ -13,7 +13,6 @@ export const verifyUser = createAsyncThunk(
         method: "GET",
       });
 
-      console.log(response);
       if (!response.ok) {
         const error = await response.json();
         return rejectWithValue(error);

@@ -15,11 +15,17 @@ import { ModeEditOutline } from "@mui/icons-material";
 import ClassicDialog from "../dialogs/ClassicDialog";
 import ProfileForm from "../forms/ProfileForm";
 import ProfileAvatar from "../images/ProfileAvatar";
+import { useDispatch } from "react-redux";
+import { updateProfile } from "@/store/api/profile";
 
-const ProfileCard = (props) => {
+const ProfileCard = ({ data, priv }) => {
 
+    // ** Hooks
+    const dispatch = useDispatch();
+
+    // ** States
     const [open, setOpen] = useState(false);
-    const [values, setValues] = useState(props)
+    const [values, setValues] = useState(data)
 
     const {
         firstname,
@@ -27,10 +33,11 @@ const ProfileCard = (props) => {
         email,
         gender,
         appeal,
-        priv
-    } = props;
+    } = data;
 
-    console.log(props)
+    const handleUpdate = () => {
+        dispatch(updateProfile(values)).then(() => { setOpen(false) });
+    }
 
     return (
         <Fragment>
@@ -85,7 +92,7 @@ const ProfileCard = (props) => {
                                     variant="body2"
                                     color="secondary"
                                 >
-                                    <PersonOutlineOutlinedIcon /> <b>Full Name:</b> {props.user?.firstname} {props.user?.lastname}
+                                    <PersonOutlineOutlinedIcon /> <b>Full Name:</b> {firstname} {lastname}
                                 </Typography>
                             </Grid>
 
@@ -99,7 +106,7 @@ const ProfileCard = (props) => {
                                     variant="body2"
                                     color="secondary"
                                 >
-                                    <ContactMailOutlinedIcon /> <b>E-mail:</b> {props.user?.email}
+                                    <ContactMailOutlinedIcon /> <b>E-mail:</b> {email}
                                 </Typography>
                             </Grid>
 
@@ -113,7 +120,7 @@ const ProfileCard = (props) => {
                                     variant="body2"
                                     color="secondary"
                                 >
-                                    <WcOutlinedIcon /> <b>Gender:</b> {props.user?.gender}
+                                    <WcOutlinedIcon /> <b>Gender:</b> {gender}
                                 </Typography>
                             </Grid>
 
@@ -127,7 +134,7 @@ const ProfileCard = (props) => {
                                     variant="body2"
                                     color="secondary"
                                 >
-                                    <RecordVoiceOverOutlinedIcon /> <b>Appeal:</b> {props.user?.appeal}
+                                    <RecordVoiceOverOutlinedIcon /> <b>Appeal:</b> {appeal}
                                 </Typography>
                             </Grid>
                         </Grid>
@@ -141,14 +148,14 @@ const ProfileCard = (props) => {
                         open={priv && open}
                         setOpen={setOpen}
                         title={<Box>
-                            Change <b>{props.user?.firstname} {props.user?.lastname}</b>'s Profile Informations
+                            Change <b>{firstname} {lastname}</b>'s Profile Informations
                         </Box>}
                         subtitle=""
                         actions={
                             <Button
                                 variant="contained"
                                 color="success"
-                                onClick={() => router.push("/login")}
+                                onClick={() => handleUpdate()}
                             >
                                 Save
                             </Button>

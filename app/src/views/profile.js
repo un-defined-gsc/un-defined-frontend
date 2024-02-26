@@ -19,7 +19,7 @@ import Aside from "@/layout/components/Aside";
 import CloseIcon from "@mui/icons-material/Close";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import ProfileAvatar from "@/components/images/ProfileAvatar";
-import { getPost } from "@/store/api/post";
+import { getPosts } from "@/store/api/post";
 import PostCard from "@/components/cards/PostCard";
 
 const Profile = ({ priv = true }) => {
@@ -33,7 +33,6 @@ const Profile = ({ priv = true }) => {
     editPost: priv ? true : false,
   };
 
-
   // ** States
   const [tab, setTab] = useState("posts");
 
@@ -42,7 +41,7 @@ const Profile = ({ priv = true }) => {
 
   // ** store
   const values = useSelector(getProfile);
-  const data = useSelector(getPost);
+  const data = useSelector(getPosts);
   const [open, setOpen] = useState(false);
   const arrow = useRef();
 
@@ -69,8 +68,6 @@ const Profile = ({ priv = true }) => {
     }
   }, [router.isReady]);
 
-  console.log(values)
-
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down("lg"));
   const Handletoggle = () => setOpen(!open);
 
@@ -85,7 +82,7 @@ const Profile = ({ priv = true }) => {
           gap: "1rem",
         }}
       >
-        <ProfileCard {...values} priv={priv} />
+        <ProfileCard data={{ ...values.user }} priv={priv} />
 
         <TabContext value={tab}>
           <TabList
@@ -106,7 +103,7 @@ const Profile = ({ priv = true }) => {
                   <PostCard
                     sx={{ width: "100%" }}
                     data={item}
-                    settings={{ ...settings,editPost:true, showLikes: true }}
+                    settings={{ ...settings, editPost: true, showLikes: true }}
                   />
                 </Grid>
               ))}

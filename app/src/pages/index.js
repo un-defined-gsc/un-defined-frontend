@@ -36,7 +36,7 @@ const Home = () => {
       // Redirect user to Login URL
       router.replace('/login')
     }
-  }, [])
+  }, [router.pathname])
 
   return <Spinner />
 }

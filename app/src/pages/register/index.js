@@ -32,8 +32,6 @@ const Register = () => {
     register({ email, password, first_name, last_name, gender, appeal });
   };
 
-
-
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 

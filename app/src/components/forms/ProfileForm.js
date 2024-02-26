@@ -3,9 +3,6 @@ import { Fragment } from 'react'
 import ProfileAvatar from '../images/ProfileAvatar';
 
 const ProfileForm = ({ values = null, setValues = () => { } }) => {
-
-    console.log("values",values)
-
     return (
         <Fragment>
             <Grid container spacing={3}>
@@ -36,7 +33,7 @@ const ProfileForm = ({ values = null, setValues = () => { } }) => {
                                         id="outlined-required"
                                         name="firstname"
                                         label="Name"
-                                        value={values?.user?.firstname || ""}
+                                        value={values?.firstname || ""}
                                         onChange={(e) => setValues({ ...values, firstname: e.target.value })}
                                     />
                                 </FormControl>
@@ -48,7 +45,7 @@ const ProfileForm = ({ values = null, setValues = () => { } }) => {
                                         id="outlined-required"
                                         name="lastname"
                                         label="Surname"
-                                        value={values?.user?.lastname || ""}
+                                        value={values?.lastname || ""}
                                         onChange={(e) => setValues({ ...values, lastname: e.target.value })}
                                     />
                                 </FormControl>
@@ -61,7 +58,7 @@ const ProfileForm = ({ values = null, setValues = () => { } }) => {
                                         name="email"
                                         label="Email"
                                         type="email"
-                                        value={values?.user?.email || ""}
+                                        value={values?.email || ""}
                                         onChange={(e) => setValues({ ...values, email: e.target.value })}
                                     />
                                 </FormControl>
@@ -77,7 +74,7 @@ const ProfileForm = ({ values = null, setValues = () => { } }) => {
                                         labelId="demo-simple-select-label"
                                         id="demo-simple-select"
                                         label="Gender"
-                                        value={values.user?.gender || ""}
+                                        value={values?.gender || ""}
                                         onChange={(e) => setValues({ ...values, gender: e.target.value })}
                                     >
                                         <MenuItem value={"male"}>Male</MenuItem>
@@ -99,7 +96,7 @@ const ProfileForm = ({ values = null, setValues = () => { } }) => {
                                         labelId="demo-simple-select-label"
                                         id="demo-simple-select"
                                         label="Gender"
-                                        value = {values?.user?.appeal || ""}
+                                        value={values?.appeal || ""}
                                         onChange={(e) => setValues({ ...values, appeal: e.target.value })}
                                     >
                                         <MenuItem value={"she"}>She/Her</MenuItem>

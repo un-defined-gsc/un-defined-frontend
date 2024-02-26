@@ -23,6 +23,8 @@ import TagChip from "../chip/tag";
 import CategoryChip from "../chip/category";
 import ClassicDialog from "../dialogs/ClassicDialog";
 import PostForm from "../forms/PostForm";
+import { useDispatch } from "react-redux";
+import { updatePost } from "@/store/api/post";
 
 const PostCard = ({ settings, data }) => {
   const [isLiked, setIsLiked] = useState(data.isLiked);
@@ -30,6 +32,7 @@ const PostCard = ({ settings, data }) => {
   const [values, setValues] = useState(data);
 
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const {
     showComments = false,
@@ -49,8 +52,9 @@ const PostCard = ({ settings, data }) => {
     created_at
   } = data;
 
-  console.log(data);
-
+  const handleUpdate = () => {
+    dispatch(updatePost(values)).then(() => { setOpen(false) });
+  }
 
   return (
     <Fragment>
@@ -72,19 +76,17 @@ const PostCard = ({ settings, data }) => {
               justifyContent: "space-between",
             }}
           >
-   
-                <CategoryChip
-                label={category}
-                isActive={true}
-                info
-                />
-          
+            <CategoryChip
+              label={category}
+              isActive={true}
+              info
+            />
 
             <Typography
               variant="caption"
               sx={{ display: "flex", alignItems: "center", gap: "8px" }}
             >
-              {(created_at).split("T")[0] }
+              {(created_at).split("T")[0]}
               <InsertInvitationOutlined />
             </Typography>
           </Box>
@@ -173,7 +175,7 @@ const PostCard = ({ settings, data }) => {
                   <OpenInNewOutlined />
                   Edit Post
                 </Button>
-                
+
 
               ) : null}
             </Box>
@@ -209,7 +211,7 @@ const PostCard = ({ settings, data }) => {
         </CardActions>
       </Card>
 
-      
+
       <ClassicDialog
         open={open}
         setOpen={setOpen}
@@ -217,7 +219,7 @@ const PostCard = ({ settings, data }) => {
           <Button
             variant="contained"
             color="success"
-            onClick={() => setOpen(false)}
+            onClick={() => handleUpdate()}
           >
             Save
           </Button>

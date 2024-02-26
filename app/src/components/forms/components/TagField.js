@@ -19,7 +19,7 @@ const TagField = ({ tags = [], setTags = () => { } }) => {
             setError("");
             return
         } else if (!e.target.value?.match(whitelistRegex)) {
-            if (tags[tags.length - 1] != lastAddedTag) {
+            if (tags[tags.length - 1].tag != lastAddedTag.tag) {
                 if (keys.includes(e.target.value))
                     setError("You cannot use seperate symbols as first character in tags.");
                 else
@@ -38,8 +38,8 @@ const TagField = ({ tags = [], setTags = () => { } }) => {
 
             if (newTag == "") return;
 
-            setTags([...tags, newTag]);
-            setLastAddedTag(newTag);
+            setTags([...tags, { tag: newTag }]);
+            setLastAddedTag({ tag: newTag });
             setTagName("");
             setError("");
         }
@@ -87,7 +87,7 @@ const TagField = ({ tags = [], setTags = () => { } }) => {
                             ? tags?.map((tag, index) => (
                                 <Grid item key={index}>
                                     <TagChip
-                                        label={tag}
+                                        label={tag.tag}
                                         onDelete={handleDeleteTag(index)}
                                     />
                                 </Grid>

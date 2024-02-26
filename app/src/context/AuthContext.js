@@ -4,6 +4,8 @@ import { createContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 // ** Axios
 import authConfig from "@/configs/auth";
+import { showToast } from "@/utils/showToast";
+import axios from "axios";
 
 // ** Defaults
 const defaultProvider = {
@@ -35,85 +37,110 @@ const AuthProvider = ({ children }) => {
     setUser(null);
     setLoading(false);
     setIsInitialized(false);
-    localStorage.removeItem("user");
+    localStorage.removeItem(authConfig.userDataName);
     localStorage.removeItem("jwt-token");
 
     const firstPath = router.pathname.split("/")[1];
-    if (firstPath != "login") router.replace("/login");
+    if (firstPath != "login") router.push("/login");
   };
 
-  const login = async (data) => {
-    await fetch("/api/v1/public/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => {
-        if (res.status === 200) {
-          res.json().then((body) => {
-            try {
-              setUser({
-                ...body.user,
-                role: "user",
-              });
-              router.replace("/");
-            } catch (error) {
-              console.log("Fetch error:", error);
-            }
-          });
-        } else {
-          console.log("Fetch error:", res);
-        }
-      })
-      .catch((err) => {
-        console.log("Fetch error:", err);
-        logout();
-      });
-  };
 
-  const logout = (user) => {
-    fetch("/api/v1/private/user/logout", {
+  const logout = () => {
+    axios({
+      url: authConfig.logout,
       method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
     }).then((res) => {
       if (res.status === 200) {
-        deleteStorage();
+        showToast("dismiss")
+        showToast("success", "Logged out successfully")
       }
-    });
+      deleteStorage();
+    })
+      .catch((error) => {
+        // if (error) showToast("error", error.response.data.message)
+        deleteStorage();
+      })
   };
 
   const initAuth = async () => {
     setIsInitialized(true);
-    const userData = window.localStorage.getItem(authConfig.userDataName);
+    let userData = window.localStorage.getItem(authConfig.userDataName);
+    userData = userData ? atob(userData) : null;
+    userData = userData ? JSON.parse(userData) : null;
 
-    if (userData) {
-      setUser(userData);
-    } else {
-      const user = { id: 1, name: "John Doe", role: "user" };
-      setUser(user);
+    try {
+      const response = await axios({
+        url: authConfig.account,
+        method: "GET",
+      })
+
+      if (userData.email == response.data.data.user.email) {
+        window.localStorage.setItem(authConfig.userDataName, btoa(JSON.stringify(response.data.data.user)))
+        setUser({ ...response.data.data.user, role: 'user' });
+      } else {
+        window.localStorage.setItem(authConfig.userDataName, btoa(JSON.stringify(response.data.data.user)))
+        setUser({ ...response.data.data.user, role: 'user' });
+      }
+    } catch (error) {
+      deleteStorage();
+      const firstPath = router.pathname.split("/")[1];
+
+      if (firstPath != "login" || firstPath != "register") {
+        showToast("dismiss");
+        showToast("error", error?.response?.data?.message);
+      }
     }
 
     setLoading(false);
   };
 
-  const handleRegister = async (params) => {
-    const { email, password, first_name, last_name, gender, appeal } = params;
-    const response = await fetch("/api/v1/public/register", {
+  const handleLogin = async (values) => {
+    await axios({
+      url: authConfig.login,
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(params),
-    });
-    const data = await response.json();
-    if (response.status === 200) {
-      login({ email, password });
-    } else {
-      console.log("Fetch error:", data);
+      data: values,
+    })
+      .then(async (response) => {
+        if (response.status === 200) {
+          let userData = response.data.data // get user data from api
+          let userDataNew = JSON.stringify(userData) // convert user data to string
+          userDataNew = btoa(userDataNew) // encode user data with base64
+
+          localStorage.setItem(authConfig.userDataName, userDataNew) // set user data to local storage
+          setUser({ ...userData, role: 'user' }) // set user data to state
+
+          showToast("dismiss") // dismiss toast
+          showToast("success", "Logged in successfully") // show success message
+          router.push("/social") // locate to path from api or /portal path
+        } else showToast('error', "Login failed. Please try again.") // show error message
+      })
+      .catch(async (error) => {
+        if (error) showToast('error', error.response.data.message)
+        logout()
+      })
+  };
+
+  const handleRegister = async (values) => {
+    try {
+      const response = await axios({
+        url: authConfig.register,
+        method: "POST",
+        data: values,
+      });
+
+      if (response.status === 200) {
+        showToast("dismiss")
+        showToast("success", "Account created successfully")
+
+        router.push("/login");
+      } else {
+        showToast("dismiss")
+        showToast("error", "Account creation failed. Please try again.")
+        // console.log("Fetch error:", data);
+      }
+    } catch (error) {
+      showToast("dismiss")
+      showToast("error", "Account creation failed. Please try again.")
     }
   };
 
@@ -124,7 +151,7 @@ const AuthProvider = ({ children }) => {
   const values = {
     user,
     setUser,
-    login,
+    login: handleLogin,
     logout,
     register: handleRegister,
   };

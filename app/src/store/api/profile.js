@@ -1,4 +1,6 @@
+import { showToast } from '@/utils/showToast';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 const initialState = {
     loading: false,
@@ -11,26 +13,32 @@ export const fetchProfile = createAsyncThunk(
     "fetchProfile",
     async (_, { rejectWithValue }) => {
         try {
-            const response = await fetch(
-                "/api/v1/private/user/me",
-            );
+            const response = await axios({
+                url: "/api/v1/private/user/me",
+                method: "GET",
+            });
 
-            if (!response.ok) {
-                const errorData = await response.json();
-                return rejectWithValue(
-                    errorData.message || "Failed to fetch profile data"
-                );
-            }
-            const responseData = await response.json();
-            return responseData.data;
+            return response.data.data;
         } catch (err) {
-            console.error(err);
-            return rejectWithValue(
-                "An error occurred during the profile request."
-            );
+            // console.error(err);
         }
     }
 );
+
+export const updateProfile = createAsyncThunk("updateProfile", async (data, { rejectWithValue, dispatch }) => {
+    try {
+        const response = await axios({
+            url: "/api/v1/private/user/me",
+            method: "PUT",
+            data,
+        });
+
+        dispatch(fetchProfile());
+        return response.data.data;
+    } catch (err) {
+        // console.error(err);
+    }
+});
 
 
 export const fetchProfileById = createAsyncThunk('profile/fetchProfileById', async (id, { rejectWithValue }) => {
@@ -87,6 +95,26 @@ const profileSlice = createSlice({
         builder.addCase(fetchProfileById.rejected, (state, action) => {
             state.loading = false;
             state.error = action.payload;
+        });
+        builder.addCase(updateProfile.pending, (state) => {
+            state.loading = true;
+
+            showToast("dismiss");
+            showToast("loading", "Updating profile...");
+        });
+        builder.addCase(updateProfile.fulfilled, (state, action) => {
+            state.loading = false;
+            state.values = action.payload;
+
+            showToast("dismiss");
+            showToast("success", "Profile updated successfully");
+        });
+        builder.addCase(updateProfile.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+
+            showToast("dismiss");
+            showToast("error", "Profile update failed. Please try again.");
         });
     },
 });

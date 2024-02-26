@@ -4,9 +4,15 @@ import WidgetsOutlinedIcon from "@mui/icons-material/WidgetsOutlined";
 import TagIcon from "@mui/icons-material/Tag";
 import TagChip from "@/components/chip/tag";
 import CategoryChip from "@/components/chip/category";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCategories, getCategories } from "@/store/api/category";
+import { getFilter, setFilter } from "@/store/api/post";
 
 const Aside = () => {
 
+
+  const dispatch = useDispatch();
 
   const searchData = [
     {
@@ -23,20 +29,8 @@ const Aside = () => {
     },
   ];
 
-  const categories = [
-    {
-      title: "Story",
-    },
-    {
-      title: "Question",
-    },
-    {
-      title: "Problem",
-    },
-    {
-      title: "Job",
-    }
-  ];
+  const categories = useSelector(getCategories);
+  const filter = useSelector(getFilter);
 
   const options = searchData.map((option) => {
     const firstLetter = option.title[0].toUpperCase();
@@ -46,11 +40,34 @@ const Aside = () => {
     };
   });
 
+  useEffect(() => {
+    dispatch(fetchCategories());
+  }, []);
+
+  const handleChangeCategory = (id) => {
+    if (filter.categoryId == id) {
+      dispatch(setFilter({
+        ...filter,
+        categoryId: "",
+      }));
+    } else {
+      dispatch(setFilter({
+        ...filter,
+        categoryId: id,
+      }));
+    }
+    // if (selectedCategories.includes(id)) {
+    //   dispatch(setSelectedCategories(selectedCategories.filter((item) => item !== id)));
+    // } else {
+    //   dispatch(setSelectedCategories([...selectedCategories, id]));
+    // }
+  }
+
   return (
     <Box
       sx={{
         width: "100%",
-        maxWidth: "330px",
+        maxWidth: "300px",
         maxHeight: "100vh",
         height: "calc(100vh - 80px)",
         position: "relative",
@@ -114,14 +131,16 @@ const Aside = () => {
                 display: "flex",
                 gap: "0.5rem",
                 flexWrap: "wrap",
+                maxWidth: "300px",
               }}
             >
-              {categories.map((category, index) => (
+              {categories.map((item, index) => (
                 <CategoryChip
                   key={index}
-                  label={category.title}
-                  isActive={category.selected}
-                  />
+                  label={item.category}
+                  isActive={filter.categoryId == item.id}
+                  onClick={() => handleChangeCategory(item.id)}
+                />
               ))}
             </Box>
           </Box>

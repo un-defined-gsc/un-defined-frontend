@@ -6,6 +6,7 @@ import post from "./api/post";
 import verify from "./api/verify";
 import likes from "./api/likes";
 import comments from "./api/comment";
+import category from "./api/category";
 
 // Custom middleware
 const customizedMiddleware = (getDefaultMiddleware) =>
@@ -20,6 +21,7 @@ export const store = configureStore({
     verify,
     likes,
     comments,
+    category,
   },
   middleware: customizedMiddleware,
 });

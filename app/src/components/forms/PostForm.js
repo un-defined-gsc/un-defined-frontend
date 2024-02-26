@@ -8,13 +8,11 @@ import {
 } from "@mui/material";
 import TagField from "./components/TagField";
 
-const PostForm = ({ values = null, setValues = () => {} }) => {
+const PostForm = ({ values = null, setValues = () => { } }) => {
 
   const handleImage = (e) => {
     setValues({ ...values, image: e.target.value });
   };
-
-  console.log("values", values);
 
   return (
     <Grid container spacing={3}>

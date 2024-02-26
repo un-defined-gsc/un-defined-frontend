@@ -9,7 +9,7 @@ import ProfileAvatar from "@/components/images/ProfileAvatar";
 const Navbar = () => {
   const { logout } = useAuth();
 
-  const handleSubmit = () => logout();
+  const handleSubmit = () => { logout() };
   const router = useRouter();
 
   const handleLocate = (p) => { if (p) return () => router.replace(p) }
@@ -29,24 +29,24 @@ const Navbar = () => {
       }}
     >
 
-                <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-                > 
-            <img
-              src="/logo-vertical.png"
-              alt="logo"
-              style={{
-                maxHeight: "60px",
-                width: "auto",
-              }}
-            />
-          </Box>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <img
+          src="/logo-vertical.png"
+          alt="logo"
+          style={{
+            maxHeight: "60px",
+            width: "auto",
+          }}
+        />
+      </Box>
 
-          <Divider />
+      <Divider />
 
       <Box
         sx={{ width: "100%", display: "flex", justifyContent: "center" }}
@@ -57,7 +57,7 @@ const Navbar = () => {
       <Box>
         <Typography variant="body2">Angeline Christina</Typography>
         <Typography variant="body1" color="secondary">
-         Hi my name is Angeline Christina, I'm a software engineer and I'm here to help you. 
+          Hi my name is Angeline Christina, I'm a software engineer and I'm here to help you.
         </Typography>
       </Box>
 

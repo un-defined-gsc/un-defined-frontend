@@ -41,7 +41,6 @@ export const deleteComment = createAsyncThunk(
         method: "DELETE",
       });
 
-      console.log(response);
       if (!response.ok) {
         const error = await response.json();
         return rejectWithValue(error);

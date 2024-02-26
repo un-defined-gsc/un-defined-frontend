@@ -13,7 +13,6 @@ export const likePost = createAsyncThunk(
         method: "POST",
       });
 
-      console.log(response);
       if (!response.ok) {
         const error = await response.json();
         return rejectWithValue(error);
@@ -34,7 +33,6 @@ export const unlikePost = createAsyncThunk(
         method: "DELETE",
       });
 
-      console.log(response);
       if (!response.ok) {
         const error = await response.json();
         return rejectWithValue(error);

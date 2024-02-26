@@ -1,10 +1,10 @@
 let baseUrl = process.env.NEXT_PUBLIC_BASE_URL
 
 const authConfig = {
-  account: baseUrl + '/session',
-  login: baseUrl + '/session',
-  logout: baseUrl + '/session',
-  register: baseUrl + '/sign-up',
+  account: baseUrl + '/private/user/me',
+  login: baseUrl + '/public/login',
+  logout: baseUrl + '/private/user/logout',
+  register: baseUrl + '/public/register',
   sessionCookieName: 'sessionID',
 
   userDataName: 'userData',

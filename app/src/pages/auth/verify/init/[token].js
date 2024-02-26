@@ -85,12 +85,8 @@ const Token = () => {
   const loading = useSelector(getLoading);
   const [noToken, setNoToken] = useState(false);
 
-  console.log(status);
-  console.log(loading);
-
   useEffect(() => {
     const token = router.query.token || null;
-    console.log(token);
     if (token) dispatch(verifyUser(token));
 
     setInterval(() => {

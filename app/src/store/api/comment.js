@@ -10,9 +10,11 @@ export const commentPost = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const post = {
-        title: data.body,
+        body: data.body,
         post_id: data.post_id,
       };
+
+      console.log(post);
 
       const response = await fetch("/api/v1/private/comment", {
         method: "POST",

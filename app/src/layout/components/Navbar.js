@@ -6,13 +6,26 @@ import { useRouter } from "next/router";
 import navigation from "@/navigation";
 import { hexToRGBA } from "@/utils/hex-to-rgba";
 import ProfileAvatar from "@/components/images/ProfileAvatar";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { fetchProfile, getProfile } from "@/store/api/profile";
 const Navbar = () => {
   const { logout } = useAuth();
+    const dispatch = useDispatch();
 
   const handleSubmit = () => { logout() };
   const router = useRouter();
 
   const handleLocate = (p) => { if (p) return () => router.replace(p) }
+
+  useEffect(() => {
+    dispatch(fetchProfile()); 
+  }
+  , []);
+  const values = useSelector(getProfile);
+
+  console.log(values)
+
 
   return (
     <Box
@@ -55,9 +68,9 @@ const Navbar = () => {
       </Box>
 
       <Box>
-        <Typography variant="body2">Angeline Christina</Typography>
+        <Typography variant="body2">{values.user.firstname} {values.user.lastname} </Typography>
         <Typography variant="body1" color="secondary">
-          Hi my name is Angeline Christina, I'm a software engineer and I'm here to help you.
+          Hi my name is {values.user.firstname} {values.user.lastname}, I'm a software engineer and I'm here to help you.
         </Typography>
       </Box>
 

@@ -48,6 +48,9 @@ export const fetchPostById = createAsyncThunk(
         `/api/v1/private/post/${id}`,
       );
 
+      console.log(response);
+      console.log(id);
+
       if (!response.ok) {
         const errorData = await response.json();
         return rejectWithValue(
@@ -147,6 +150,8 @@ export const deletePost = createAsyncThunk(
 
 
 
+
+
 const postSlice = createSlice({
   name: 'post',
   initialState,
@@ -226,6 +231,17 @@ const postSlice = createSlice({
 
       showToast("dismiss")
       showToast("error", "Post delete failed. Please try again.")
+    });
+    builder.addCase(fetchPostById.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(fetchPostById.fulfilled, (state, action) => {
+      state.loading = false;
+      state.values = action.payload;
+    });
+    builder.addCase(fetchPostById.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
     });
   },
 });

@@ -65,7 +65,6 @@ const AuthProvider = ({ children }) => {
   const initAuth = async () => {
     setIsInitialized(true);
     let userData = window.localStorage.getItem(authConfig.userDataName);
-    userData = userData ? atob(userData) : null;
     userData = userData ? JSON.parse(userData) : null;
 
     try {
@@ -73,15 +72,11 @@ const AuthProvider = ({ children }) => {
         url: authConfig.account,
         method: "GET",
       })
-
-      if (userData.email == response.data.data.user.email) {
-        window.localStorage.setItem(authConfig.userDataName, btoa(JSON.stringify(response.data.data.user)))
+        const key = JSON.stringify(response.data.data.user)
+        window.localStorage.setItem(authConfig.userDataName,key )
         setUser({ ...response.data.data.user, role: 'user' });
-      } else {
-        window.localStorage.setItem(authConfig.userDataName, btoa(JSON.stringify(response.data.data.user)))
-        setUser({ ...response.data.data.user, role: 'user' });
-      }
     } catch (error) {
+      console.log("error", error);
       deleteStorage();
       const firstPath = router.pathname.split("/")[1];
 
@@ -104,7 +99,6 @@ const AuthProvider = ({ children }) => {
         if (response.status === 200) {
           let userData = response.data.data // get user data from api
           let userDataNew = JSON.stringify(userData) // convert user data to string
-          userDataNew = btoa(userDataNew) // encode user data with base64
 
           localStorage.setItem(authConfig.userDataName, userDataNew) // set user data to local storage
           setUser({ ...userData, role: 'user' }) // set user data to state

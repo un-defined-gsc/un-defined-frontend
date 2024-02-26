@@ -25,6 +25,7 @@ import ClassicDialog from "../dialogs/ClassicDialog";
 import PostForm from "../forms/PostForm";
 import { useDispatch } from "react-redux";
 import { updatePost } from "@/store/api/post";
+import { showDatetime } from "@/utils/timeOptions";
 
 const PostCard = ({ settings, data }) => {
   const [isLiked, setIsLiked] = useState(data.isLiked);
@@ -56,6 +57,8 @@ const PostCard = ({ settings, data }) => {
     dispatch(updatePost(values)).then(() => { setOpen(false) });
   }
 
+  showDatetime(created_at, { y: true, m: true, d: true, h: true, m: true });
+
   return (
     <Fragment>
       <Card>
@@ -86,7 +89,7 @@ const PostCard = ({ settings, data }) => {
               variant="caption"
               sx={{ display: "flex", alignItems: "center", gap: "8px" }}
             >
-              {(created_at).split("T")[0]}
+              {showDatetime(created_at, { y: true, m: true, d: true, h: true, m: true })}
               <InsertInvitationOutlined />
             </Typography>
           </Box>
@@ -161,7 +164,7 @@ const PostCard = ({ settings, data }) => {
                   rounded
                   color="secondary"
                   // skin="light"
-                  onClick={() => router.replace("/social/comments/1")}
+                  onClick={() => router.replace(`/social/comments/${data.id}`)}
                 />
               ) : null}
 
